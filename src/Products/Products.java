@@ -63,7 +63,8 @@ public abstract class Products {
 	 */
 	public void substractStock()
 	{
-		this.stock--;
+		if(stock > 0)
+			this.stock--;
 	}
 	
 	/**
@@ -71,7 +72,8 @@ public abstract class Products {
 	 */
 	public void substractStock(int quantity)
 	{
-		this.stock -= quantity;
+		if(stock > quantity)
+			this.stock -= quantity;
 	}
 }
 

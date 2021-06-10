@@ -1,9 +1,11 @@
 package types_users;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import Instruments.Cart;
 import Instruments.CreditCard;
+import List.Orders;
 import Products.Products;
 
 public abstract class Users {
@@ -14,20 +16,22 @@ public abstract class Users {
 	private	String Email;
 	private CreditCard card;
 	private Cart cart;
-
+	private ArrayList<Orders> orders;
+	
 
 	public Users() {
 		
 	}
 	
-	public Users(String id, String name, String lastName, String password, String email) {
-		this.id = id;
+	public Users(String name, String lastName, String password, String email) {
+		//this.id ; hay que hacer un generador de id
 		Name = name;
 		LastName = lastName;
 		Password = password;
 		Email = email;
 		card = new CreditCard();
 		cart = new Cart();
+		orders = new ArrayList<Orders>();
 	}
 	
 	// GETTERS

@@ -136,9 +136,11 @@ public class Cart {
 		{
 			for(int i = 0; i < products.size(); i++)
 			{
-				products.get(i).substractStock(quantity.get(i));
-				
-				remove(products.get(i));
+				if(products.get(i).getStock() > quantity.get(i))
+				{
+					products.get(i).substractStock(quantity.get(i));
+					remove(products.get(i));
+				}
 			}
 		}
 		
