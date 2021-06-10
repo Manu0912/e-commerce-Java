@@ -58,8 +58,21 @@ public abstract class Products {
 				+ ", getStock()=" + getStock() + "]";
 	}
 	
+	/**
+	 * @apiNote subtract 1 from the stock
+	 */
+	public void substractStock()
+	{
+		this.stock--;
+	}
 	
-	
+	/**
+	 * @apiNote subtract quantity from the stock
+	 */
+	public void substractStock(int quantity)
+	{
+		this.stock -= quantity;
+	}
 }
 
 
