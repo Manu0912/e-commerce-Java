@@ -33,7 +33,7 @@ public class CreditCard {
 		String numberFormated = "";
 		
 		for(int i = 0; i < number.length(); i++)
-		{
+		{ 
 			if(i < 12)
 			{
 				number2[i] = '*';
