@@ -1,12 +1,5 @@
 package types_users;
 
-import java.util.ArrayList;
-import java.util.Date;
-
-import Instruments.Cart;
-import Instruments.CreditCard;
-import List.Orders;
-import Products.Products;
 
 public abstract class Users {
 	private String id;
