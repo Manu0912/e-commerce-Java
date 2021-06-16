@@ -23,6 +23,10 @@ public abstract class Users {
 	
 	// GETTERS
 	
+	/**
+	 * 
+	 * @return cacacca
+	 */
 	public String getId() {
 		return id;
 	}
