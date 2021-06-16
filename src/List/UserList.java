@@ -10,24 +10,24 @@ import types_users.Users;
 
 
 public class UserList {
-private HashMap<String,Users> listMapUsers;
+private HashMap<Integer,Users> listMapUsers;
 
 public UserList() {
-	listMapUsers = new HashMap<String,Users>();
+	listMapUsers = new HashMap<Integer,Users>();
 }
 
-public void UserListAdd(String category,Users date) {
-	listMapUsers.put(category,date);
+public void UserListAdd(Integer id,Users date) {
+	listMapUsers.put(id,date);
 }
 
 public Users removeUser(String name)
 {
 	int flag=-1;
 	Users us=null;
-	Iterator<Entry<String,Users>> it = listMapUsers.entrySet().iterator();
+	Iterator<Entry<Integer,Users>> it = listMapUsers.entrySet().iterator();
 	while(it.hasNext()&&flag==-1)
 	{
-		Entry<String,Users> entry = it.next();
+		Entry<Integer,Users> entry = it.next();
 		if(entry.getValue().getName()==name)
 		{
 			flag=0;
@@ -41,10 +41,10 @@ public Users getUser(String name)
 {
 	int flag=-1;
 	Users us=null;
-	Iterator<Entry<String,Users>> it = listMapUsers.entrySet().iterator();
+	Iterator<Entry<Integer,Users>> it = listMapUsers.entrySet().iterator();
 	while(it.hasNext()&&flag==-1)
 	{
-		Entry<String,Users> entry = it.next();
+		Entry<Integer,Users> entry = it.next();
 		if(entry.getValue().getName()==name)
 		{
 			flag=0;
@@ -53,14 +53,14 @@ public Users getUser(String name)
 	}
 	return us;
 }
-public String getCategory(String name)
+public Integer getId(String name)
 {
 	int flag=-1;
-	String us=null;
-	Iterator<Entry<String,Users>> it = listMapUsers.entrySet().iterator();
+	int us=-1;
+	Iterator<Entry<Integer,Users>> it = listMapUsers.entrySet().iterator();
 	while(it.hasNext()&&flag==-1)
 	{
-		Entry<String,Users> entry = it.next();
+		Entry<Integer,Users> entry = it.next();
 		if(entry.getValue().getName()==name)
 		{
 			flag=0;
@@ -71,14 +71,14 @@ public String getCategory(String name)
 }
 
 
-public String toString(String category)
+public String toString(Integer id)
 {
 	int flag=-1;
 	StringBuilder retorno = new StringBuilder();
-	Iterator<Entry<String,Users>> it = listMapUsers.entrySet().iterator();
+	Iterator<Entry<Integer,Users>> it = listMapUsers.entrySet().iterator();
 	while (it.hasNext()&&flag==-1) {
-		Entry<String, Users> entry = it.next();
-		if (entry.getKey()== category) {
+		Entry<Integer, Users> entry = it.next();
+		if (entry.getKey()== id) {
 			flag=0;
 			retorno.append(entry.getValue().toString()+"\t"+entry.getKey()+"\n");
 		}
