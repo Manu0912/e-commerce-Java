@@ -3,7 +3,7 @@ package Products;
 public abstract class Products {
 	private int id;
 	private String name;
-	private float price;
+	private double price;
 	private int stock;
 	
 	public Products()
@@ -11,7 +11,7 @@ public abstract class Products {
 		
 	}
 
-	public Products(int id, String name, float price, int stock) {
+	public Products(int id, String name, double price, int stock) {
 		this.id = id;
 		this.name = name;
 		this.price = price;
@@ -28,7 +28,7 @@ public abstract class Products {
 		return name;
 	}
 
-	public float getPrice() {
+	public double getPrice() {
 		return price;
 	}
 
@@ -80,7 +80,7 @@ public abstract class Products {
 				return false;
 		} else if (!name.equals(other.name))
 			return false;
-		if (Float.floatToIntBits(price) != Float.floatToIntBits(other.price))
+		if (Double.doubleToLongBits(price) != Double.doubleToLongBits(other.price))
 			return false;
 		if (stock != other.stock)
 			return false;

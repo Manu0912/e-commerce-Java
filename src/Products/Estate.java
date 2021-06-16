@@ -1,7 +1,6 @@
 package Products;
 
 public class Estate extends Products{
-	private String type;
 	private int rooms;
 	private boolean garage;
 	private String city;
@@ -10,23 +9,18 @@ public class Estate extends Products{
 	
 	}
 
-	public Estate(int id, String name, float price, int stock) {
+	public Estate(int id, String name, double price, int stock) {
 		super(id, name, price, stock);
 	}
 
-	public Estate(int id, String name, float price, int stock, String type, int rooms, boolean garage, String city) {
+	public Estate(int id, String name, double price, int stock, int rooms, boolean garage, String city) {
 		super(id, name, price, stock);
-		this.type = type;
 		this.rooms = rooms;
 		this.garage = garage;
 		this.city = city;
 	}
 	
 	// GETTERS
-
-	public String getType() {
-		return type;
-	}
 
 	public int getRooms() {
 		return rooms;
@@ -41,10 +35,6 @@ public class Estate extends Products{
 	}
 	
 	// SETTERS
-
-	public void setType(String type) {
-		this.type = type;
-	}
 
 	public void setRooms(int rooms) {
 		this.rooms = rooms;
@@ -63,7 +53,7 @@ public class Estate extends Products{
 
 	@Override
 	public String toString() {
-		return super.toString() + "Estate [getType()=" + getType() + ", getRooms()=" + getRooms() + ", isGarage()=" + isGarage()
+		return super.toString() + "Estate [getRooms()=" + getRooms() + ", isGarage()=" + isGarage()
 				+ ", getCity()=" + getCity() + "]";
 	}
 
@@ -89,11 +79,6 @@ public class Estate extends Products{
 		if (garage != other.garage)
 			return false;
 		if (rooms != other.rooms)
-			return false;
-		if (type == null) {
-			if (other.type != null)
-				return false;
-		} else if (!type.equals(other.type))
 			return false;
 		return true;
 	}

@@ -1,5 +1,6 @@
 package List;
 
+import java.io.EOFException;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -65,6 +66,29 @@ public class Catalogue<T> {
 	
 	/**
 	 * 
+	 * @param index of the product
+	 * @return the product in the index i
+	 */
+	public T getElement(int i)
+	{
+		return catalogue.get(i);
+	}
+	
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		
+		for(int i = 0; i < catalogue.size(); i++)
+		{
+			builder.append(catalogue.get(i).toString() + "\n");
+		}
+		
+		return builder.toString();
+	}
+	
+
+	/**
+	 * 
 	 * @return the size of the catalogue
 	 */
 	public int count()
@@ -74,11 +98,12 @@ public class Catalogue<T> {
 	
 	public void write()
 	{
+		FileOutputStream fos;
 		ObjectOutputStream oos = null;
-		
 		try 
 		{
-			oos = new ObjectOutputStream(new FileOutputStream(file_products));
+			fos = new FileOutputStream(file_products);
+			oos = new ObjectOutputStream(fos);
 			
 			for(int i = 0; i < catalogue.size(); i++)
 			{
@@ -102,7 +127,7 @@ public class Catalogue<T> {
 		}
 	}
 	
-	public Catalogue<T> read()
+	public Catalogue read()
 	{
 		ObjectInputStream ois = null;
 		Catalogue<T> catalogue = new Catalogue<T>();
@@ -115,6 +140,10 @@ public class Catalogue<T> {
 			{
 				catalogue.add(product);
 			}
+		} 
+		catch (EOFException e) 
+		{
+			System.out.println("Fin del archivo");
 		} 
 		catch (IOException e) 
 		{

@@ -3,18 +3,18 @@ package Products;
 public class Vehicle extends Products{
 	private String type;
 	private boolean isNew;
-	private float km;
+	private double km;
 	
 	public Vehicle()
 	{
 		
 	}
 
-	public Vehicle(int id, String name, float price, int stock) {
+	public Vehicle(int id, String name, double price, int stock) {
 		super(id, name, price, stock);
 	}
 
-	public Vehicle(int id, String name, float price, int stock, String type, boolean isNew, float km) {
+	public Vehicle(int id, String name, double price, int stock, String type, boolean isNew, double km) {
 		super(id, name, price, stock);
 		this.type = type;
 		this.isNew = isNew;
@@ -31,7 +31,7 @@ public class Vehicle extends Products{
 		return isNew;
 	}
 
-	public float getKm() {
+	public double getKm() {
 		return km;
 	}
 	
@@ -72,7 +72,7 @@ public class Vehicle extends Products{
 		Vehicle other = (Vehicle) obj;
 		if (isNew != other.isNew)
 			return false;
-		if (Float.floatToIntBits(km) != Float.floatToIntBits(other.km))
+		if (Double.doubleToLongBits(km) != Double.doubleToLongBits(other.km))
 			return false;
 		if (type == null) {
 			if (other.type != null)

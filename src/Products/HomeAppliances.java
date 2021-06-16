@@ -2,8 +2,8 @@ package Products;
 
 public class HomeAppliances extends Products{
 	private int voltage;
-	private float width;
-	private float weight;
+	private double width;
+	private double height;
 	
 	public HomeAppliances()
 	{
@@ -14,11 +14,11 @@ public class HomeAppliances extends Products{
 		super(id, name, price, stock);
 	}
 
-	public HomeAppliances(int id, String name, float price, int stock, int voltage, float width, float weight) {
+	public HomeAppliances(int id, String name, double price, int stock, int voltage2, double width2, double height2) {
 		super(id, name, price, stock);
-		this.voltage = voltage;
-		this.width = width;
-		this.weight = weight;
+		this.voltage = voltage2;
+		this.width = width2;
+		this.height = height2;
 	}
 	
 	// GETTERS
@@ -27,12 +27,12 @@ public class HomeAppliances extends Products{
 		return voltage;
 	}
 
-	public float getWidth() {
+	public double getWidth() {
 		return width;
 	}
 
-	public float getWeight() {
-		return weight;
+	public double getHeight() {
+		return height;
 	}
 	
 	// SETTERS
@@ -45,8 +45,8 @@ public class HomeAppliances extends Products{
 		this.width = width;
 	}
 
-	public void setWeight(float weight) {
-		this.weight = weight;
+	public void setHeight(float Height) {
+		this.height = Height;
 	}
 	
 	// METHODS
@@ -54,7 +54,7 @@ public class HomeAppliances extends Products{
 	@Override
 	public String toString() {
 		return super.toString() + "HomeAppliances [getVoltage()=" + getVoltage() + ", getWidth()=" + getWidth() + ", getWeight()="
-				+ getWeight() + "]";
+				+ getHeight() + "]";
 	}
 
 	@Override
@@ -71,14 +71,16 @@ public class HomeAppliances extends Products{
 		if (getClass() != obj.getClass())
 			return false;
 		HomeAppliances other = (HomeAppliances) obj;
+		if (Double.doubleToLongBits(height) != Double.doubleToLongBits(other.height))
+			return false;
 		if (voltage != other.voltage)
 			return false;
-		if (Float.floatToIntBits(weight) != Float.floatToIntBits(other.weight))
-			return false;
-		if (Float.floatToIntBits(width) != Float.floatToIntBits(other.width))
+		if (Double.doubleToLongBits(width) != Double.doubleToLongBits(other.width))
 			return false;
 		return true;
 	}
+
+	
 	
 	
 }
