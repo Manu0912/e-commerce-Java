@@ -56,6 +56,35 @@ public class Clothing extends Products{
 	public String toString() {
 		return super.toString() + "Clothing [getSize()=" + getSize() + ", getColour()=" + getColour() + ", getBrand()=" + getBrand() + "]";
 	}
+
+	@Override
+	public int hashCode() {
+		return 1;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Clothing other = (Clothing) obj;
+		if (brand == null) {
+			if (other.brand != null)
+				return false;
+		} else if (!brand.equals(other.brand))
+			return false;
+		if (colour == null) {
+			if (other.colour != null)
+				return false;
+		} else if (!colour.equals(other.colour))
+			return false;
+		if (size != other.size)
+			return false;
+		return true;
+	}
 	
 	
 }

@@ -55,6 +55,32 @@ public class Vehicle extends Products{
 	public String toString() {
 		return super.toString() + "Vehicle [getType()=" + getType() + ", isNew()=" + isNew() + ", getKm()=" + getKm() + "]";
 	}
+
+	@Override
+	public int hashCode() {
+		return 1;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Vehicle other = (Vehicle) obj;
+		if (isNew != other.isNew)
+			return false;
+		if (Float.floatToIntBits(km) != Float.floatToIntBits(other.km))
+			return false;
+		if (type == null) {
+			if (other.type != null)
+				return false;
+		} else if (!type.equals(other.type))
+			return false;
+		return true;
+	}
 	
 	
 }

@@ -56,6 +56,29 @@ public class HomeAppliances extends Products{
 		return super.toString() + "HomeAppliances [getVoltage()=" + getVoltage() + ", getWidth()=" + getWidth() + ", getWeight()="
 				+ getWeight() + "]";
 	}
+
+	@Override
+	public int hashCode() {
+		return 1;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		HomeAppliances other = (HomeAppliances) obj;
+		if (voltage != other.voltage)
+			return false;
+		if (Float.floatToIntBits(weight) != Float.floatToIntBits(other.weight))
+			return false;
+		if (Float.floatToIntBits(width) != Float.floatToIntBits(other.width))
+			return false;
+		return true;
+	}
 	
 	
 }

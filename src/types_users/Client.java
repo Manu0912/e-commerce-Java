@@ -34,6 +34,72 @@ public class Client extends Users{
 		Address = address;
 	}
 	
+	// GETTERS
+	
+	public String getCity() {
+		return City;
+	}
+
+
+	public String getState() {
+		return State;
+	}
+
+
+	public String getAddress() {
+		return Address;
+	}
+
+
+	public CreditCard getCard() {
+		return card;
+	}
+
+
+	public Cart getCart() {
+		return cart;
+	}
+
+
+	public ArrayList<Orders> getOrders() {
+		return orders;
+	}
+	
+	// SETTERS
+	
+	public void setCity(String city) {
+		City = city;
+	}
+
+
+	public void setState(String state) {
+		State = state;
+	}
+
+
+	public void setAddress(String address) {
+		Address = address;
+	}
+
+
+	public void setCard(CreditCard card) {
+		this.card = card;
+	}
+
+
+	public void setCart(Cart cart) {
+		this.cart = cart;
+	}
+
+
+	public void setOrders(ArrayList<Orders> orders) {
+		this.orders = orders;
+	}
+
+
+	// METHODS
+
+		
 	/**
 	 * 
 	 * @param name
@@ -53,6 +119,7 @@ public class Client extends Users{
 		this.card = new CreditCard(name, number, date, segurityCode, balance);
 	}
 	
+
 	/**
 	 * 
 	 * @param product

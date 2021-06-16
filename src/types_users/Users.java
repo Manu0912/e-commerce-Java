@@ -2,19 +2,19 @@ package types_users;
 
 
 public abstract class Users {
-	private String id;
+	private int id;
 	private	String Name;
 	private String LastName;
 	private String Password;
 	private	String Email;
 
-
+	
 	public Users() {
 		
 	}
 	
 	public Users(String name, String lastName, String password, String email) {
-		//this.id ; hay que hacer un generador de id
+		id = generateRandomId();
 		Name = name;
 		LastName = lastName;
 		Password = password;
@@ -23,11 +23,7 @@ public abstract class Users {
 	
 	// GETTERS
 	
-	/**
-	 * 
-	 * @return cacacca
-	 */
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 	
@@ -73,6 +69,12 @@ public abstract class Users {
 				+ ", getPassword()=" + getPassword() + ", getEmail()=" + getEmail() + "]";
 	}
 	
+	public int generateRandomId()
+	{
+		int id = 0;
+		
+		return id;
+	}
 	
 }
 

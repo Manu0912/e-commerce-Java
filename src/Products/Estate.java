@@ -66,6 +66,37 @@ public class Estate extends Products{
 		return super.toString() + "Estate [getType()=" + getType() + ", getRooms()=" + getRooms() + ", isGarage()=" + isGarage()
 				+ ", getCity()=" + getCity() + "]";
 	}
+
+	@Override
+	public int hashCode() {
+		return 1;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Estate other = (Estate) obj;
+		if (city == null) {
+			if (other.city != null)
+				return false;
+		} else if (!city.equals(other.city))
+			return false;
+		if (garage != other.garage)
+			return false;
+		if (rooms != other.rooms)
+			return false;
+		if (type == null) {
+			if (other.type != null)
+				return false;
+		} else if (!type.equals(other.type))
+			return false;
+		return true;
+	}
 	
 	
 }
