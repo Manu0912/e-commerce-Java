@@ -23,17 +23,17 @@ public class UserList {
 	
 	// GETTERS
 		/**
-		 * @param name of type String
+		 * @param id of type Integer
 	     * @apiNote check if the user exists,using the name passed by parameter
 		 * @return returns a Users, if it does not find it a null
 		 */
-	public Users getUser(String name) {
+	public Users getUser(Integer id) {
 		int flag = -1;
 		Users us = null;
 		Iterator<Entry<Integer, Users>> it = listMapUsers.entrySet().iterator();
 		while (it.hasNext() && flag == -1) {
 			Entry<Integer, Users> entry = it.next();
-			if (entry.getValue().getName() == name) {
+			if (entry.getValue().getId() == id) {
 				flag = 0;
 				us = entry.getValue();
 			}
@@ -59,7 +59,6 @@ public class UserList {
 		}
 		return us;
 	}
-	// METHODS
 	
 	/**
 	 * @param id of type Integer
@@ -81,17 +80,17 @@ public class UserList {
 	}
 	
 	/**
-	 * @param name of type String
+	 * @param id of type Integer
 	 * @apiNote remove a specific product
 	 * @return returns an object of type Users, otherwise a null finds it
 	 */
-	public Users removeUser(String name) {
+	public Users removeUser(Integer id) {
 		int flag = -1;
 		Users us = null;
 		Iterator<Entry<Integer, Users>> it = listMapUsers.entrySet().iterator();
 		while (it.hasNext() && flag == -1) {
 			Entry<Integer, Users> entry = it.next();
-			if (entry.getValue().getName() == name) {
+			if (entry.getValue().getId() == id) {
 				flag = 0;
 				us = entry.getValue();
 				it.remove();

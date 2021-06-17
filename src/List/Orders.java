@@ -37,6 +37,8 @@ public class Orders<T> {
 		}
 		return object;
 	}
+	
+	// METHODS
 	/**
 	 * 
 	 * @param id of type Integer
