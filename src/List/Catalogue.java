@@ -16,7 +16,7 @@ public class Catalogue {
 	
 	/**
 	 * 
-	 * @param product of type T 
+	 * @param product of type Products 
 	 * @return true if the product exist or false if not
 	 */
 	public boolean existProduct(Products product)

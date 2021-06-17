@@ -12,13 +12,79 @@ public class UserList {
 	public UserList() {
 		listMapUsers = new HashMap<Integer, Users>();
 	}
-
-	public void UserListAdd(Integer id, Users date) {
-		listMapUsers.put(id, date);
-		// listMapuser.put(date.getId(), date); recomendacion para no tener que pedir el
-		// ID
+	
+	/**
+	 * @param date of type Users
+	 * @apiNote add the User to the listMapUsers
+	 */
+	public void UserListAdd(Users date) {
+		listMapUsers.put(date.getId(), date);
 	}
-
+	
+	// GETTERS
+		/**
+		 * @param name of type String
+	     * @apiNote check if the user exists,using the name passed by parameter
+		 * @return returns a Users, if it does not find it a null
+		 */
+	public Users getUser(String name) {
+		int flag = -1;
+		Users us = null;
+		Iterator<Entry<Integer, Users>> it = listMapUsers.entrySet().iterator();
+		while (it.hasNext() && flag == -1) {
+			Entry<Integer, Users> entry = it.next();
+			if (entry.getValue().getName() == name) {
+				flag = 0;
+				us = entry.getValue();
+			}
+		}
+		return us;
+	}
+	
+	/**
+	 * @param name of type String
+     * @apiNote check if the user exists,using the name passed by parameter
+	 * @return returns a Integer, If it finds it, it returns the key, if it does not find it, it returns a -1
+	 */
+	public Integer getId(String name) {
+		int flag = -1;
+		int us = -1;
+		Iterator<Entry<Integer, Users>> it = listMapUsers.entrySet().iterator();
+		while (it.hasNext() && flag == -1) {
+			Entry<Integer, Users> entry = it.next();
+			if (entry.getValue().getName() == name) {
+				flag = 0;
+				us = entry.getKey();
+			}
+		}
+		return us;
+	}
+	// METHODS
+	
+	/**
+	 * @param id of type Integer
+	 * @apiNote converts the Orders object to a string
+	 * @return String,if it does not find null
+	 */
+	public String toString(Integer id) {
+		int flag = -1;
+		StringBuilder retorno = new StringBuilder();
+		Iterator<Entry<Integer, Users>> it = listMapUsers.entrySet().iterator();
+		while (it.hasNext() && flag == -1) {
+			Entry<Integer, Users> entry = it.next();
+			if (entry.getKey() == id) {
+				flag = 0;
+				retorno.append(entry.getValue().toString() + "\t" + entry.getKey() + "\n");
+			}
+		}
+		return retorno.toString();
+	}
+	
+	/**
+	 * @param name of type String
+	 * @apiNote remove a specific product
+	 * @return returns an object of type Users, otherwise a null finds it
+	 */
 	public Users removeUser(String name) {
 		int flag = -1;
 		Users us = null;
@@ -33,47 +99,4 @@ public class UserList {
 		}
 		return us;
 	}
-
-	public Users getUser(String name) {
-		int flag = -1;
-		Users us = null;
-		Iterator<Entry<Integer, Users>> it = listMapUsers.entrySet().iterator();
-		while (it.hasNext() && flag == -1) {
-			Entry<Integer, Users> entry = it.next();
-			if (entry.getValue().getName() == name) {
-				flag = 0;
-				us = entry.getValue();
-			}
-		}
-		return us;
-	}
-
-	public Integer getId(String name) {
-		int flag = -1;
-		int us = -1;
-		Iterator<Entry<Integer, Users>> it = listMapUsers.entrySet().iterator();
-		while (it.hasNext() && flag == -1) {
-			Entry<Integer, Users> entry = it.next();
-			if (entry.getValue().getName() == name) {
-				flag = 0;
-				us = entry.getKey();
-			}
-		}
-		return us;
-	}
-
-	public String toString(Integer id) {
-		int flag = -1;
-		StringBuilder retorno = new StringBuilder();
-		Iterator<Entry<Integer, Users>> it = listMapUsers.entrySet().iterator();
-		while (it.hasNext() && flag == -1) {
-			Entry<Integer, Users> entry = it.next();
-			if (entry.getKey() == id) {
-				flag = 0;
-				retorno.append(entry.getValue().toString() + "\t" + entry.getKey() + "\n");
-			}
-		}
-		return retorno.toString();
-	}
-
 }
