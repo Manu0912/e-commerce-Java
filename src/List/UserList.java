@@ -13,6 +13,11 @@ public class UserList {
 		listMapUsers = new HashMap<Integer, Users>();
 	}
 	
+	public HashMap<Integer, Users> getHashMap()
+	{
+		return listMapUsers;
+	}
+	
 	/**
 	 * @param date of type Users
 	 * @apiNote add the User to the listMapUsers
@@ -27,13 +32,13 @@ public class UserList {
 	     * @apiNote check if the user exists,using the name passed by parameter
 		 * @return returns a Users, if it does not find it a null
 		 */
-	public Users getUser(Integer id) {
+	public Users getUser(String name) {
 		int flag = -1;
 		Users us = null;
 		Iterator<Entry<Integer, Users>> it = listMapUsers.entrySet().iterator();
 		while (it.hasNext() && flag == -1) {
 			Entry<Integer, Users> entry = it.next();
-			if (entry.getValue().getId() == id) {
+			if (entry.getValue().getName().equals(name)) {
 				flag = 0;
 				us = entry.getValue();
 			}
@@ -98,4 +103,31 @@ public class UserList {
 		}
 		return us;
 	}
+	
+	public int count()
+	{
+		return listMapUsers.size();
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

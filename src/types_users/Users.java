@@ -1,7 +1,8 @@
 package types_users;
 
+import java.io.Serializable;
 
-public abstract class Users {
+public abstract class Users implements Serializable{
 	private int id;
 	private	String Name;
 	private String LastName;
@@ -69,11 +70,12 @@ public abstract class Users {
 				+ ", getPassword()=" + getPassword() + ", getEmail()=" + getEmail() + "]";
 	}
 	
-	public int generateRandomId()
+	public int generateRandomId() // hacer bien la funcion
 	{
-		int id = 0;
+		float id = (float) Math.random() * 10;
+		int id1 = (int) id;
 		
-		return id;
+		return id1;
 	}
 	
 }
