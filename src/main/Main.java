@@ -1,15 +1,15 @@
 package main;
 
+import GraphicInterface.LogIn;
 import List.UserList;
-
 import types_users.Users;
 
 public class Main {
 
 	public static void main(String[] args) {
-		UserList userList = new UserList();
-
-		// boolean autentificated = login(userList,"pepito","1234");
+		LogIn inicio = new LogIn();
+		//Signup signup = new Signup();
+		//Principal principal = new Principal();
 
 		
 	}

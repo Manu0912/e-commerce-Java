@@ -56,8 +56,7 @@ public abstract class Products implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Products [getId()=" + getId() + ", getName()=" + getName() + ", getPrice()=" + getPrice()
-				+ ", getStock()=" + getStock() + "]";
+		return getName() + "\nPrecio: " + getPrice() + "\nStock: " + getStock() + "\n";
 	}
 	
 	

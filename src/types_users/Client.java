@@ -10,7 +10,6 @@ import Products.Products;
 
 public class Client extends Users{
 	private String	City;
-	private String State;
 	private String	Address;
 	private CreditCard card;
 	private Cart cart;
@@ -27,10 +26,9 @@ public class Client extends Users{
 	}
 
 
-	public Client(String name, String lastName, String password, String email, String city, String state, String address) {
+	public Client(String name, String lastName, String password, String email, String city, String address) {
 		super(name, lastName, password, email);
 		City = city;
-		State = state;
 		Address = address;
 	}
 	
@@ -38,11 +36,6 @@ public class Client extends Users{
 	
 	public String getCity() {
 		return City;
-	}
-
-
-	public String getState() {
-		return State;
 	}
 
 
@@ -69,11 +62,6 @@ public class Client extends Users{
 	
 	public void setCity(String city) {
 		City = city;
-	}
-
-
-	public void setState(String state) {
-		State = state;
 	}
 
 

@@ -48,6 +48,31 @@ public class UserUtiles {
 		}
 	}
 	
+	public static void write(Users user)
+	{
+		ObjectOutputStream oos = null;
+		
+		try 
+		{
+			oos = new ObjectOutputStream(new FileOutputStream(file_users));
+			oos.writeObject(user);
+		} 
+		catch (IOException e) 
+		{
+			e.printStackTrace();
+		}
+		finally {
+			try 
+			{
+				oos.close();
+			} 
+			catch (IOException e) 
+			{
+				e.printStackTrace();
+			}
+		}
+	}
+	
 	
 	public static HashMap<Integer, Users> read()
 	{

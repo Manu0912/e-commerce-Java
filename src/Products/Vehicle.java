@@ -56,7 +56,7 @@ public class Vehicle extends Products{
 		String isNew = "";
 		if(isNew()) isNew = "Si";
 		else isNew = "No";
-		return super.toString() + "Marca: " + getType() + "\nEs nueva: " + isNew + "\nKilometros" + getKm();
+		return super.toString() + "Marca: " + getType() + "\nEs nueva: " + isNew + "\nKilometros: " + getKm();
 	}
 
 	@Override
