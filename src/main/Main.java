@@ -1,5 +1,6 @@
 package main;
 
+import Files.CatalogueUtiles;
 import List.Catalogue;
 import List.UserList;
 import Products.Clothing;
@@ -16,7 +17,7 @@ public class Main {
 
 		// boolean autentificated = login(userList,"pepito","1234");
 
-		Catalogue<Products> catalogue = new Catalogue<Products>();
+		Catalogue catalogue = new Catalogue();
 		Products e = new HomeAppliances(1, "Cafetera", 20000, 80, 50, 20, 20);
 		Products v = new Vehicle(2, "Ford", 800000, 10, "Auto", true, 0);
 		Products i = new Estate(3, "Casa", 150000, 1, 4, true, "Mar del Plata");
@@ -27,12 +28,11 @@ public class Main {
 		catalogue.add(i);
 		catalogue.add(c);
 
-		catalogue.write();
+		CatalogueUtiles.write(catalogue);
 
-		Catalogue<Products> c2 = new Catalogue<Products>();
-		c2 = catalogue.read();
+		Catalogue c2 = CatalogueUtiles.read();
 
-		System.out.println(c2.getElement(0));
+		System.out.println(c2.toString());
 
 	}
 

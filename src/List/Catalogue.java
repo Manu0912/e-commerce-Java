@@ -1,22 +1,17 @@
 package List;
 
-import java.io.EOFException;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
+import Products.Products;
 
-public class Catalogue<T> {
-	private ArrayList<T> catalogue;
-	
-	private final static String file_products = "products.dat";
+
+public class Catalogue {
+	private ArrayList<Products> catalogue;
+
 	
 	public Catalogue()
 	{
-		catalogue = new ArrayList<T>();
+		catalogue = new ArrayList<Products>();
 	}
 	
 	/**
@@ -24,7 +19,7 @@ public class Catalogue<T> {
 	 * @param product of type T 
 	 * @return true if the product exist or false if not
 	 */
-	public boolean existProduct(T product)
+	public boolean existProduct(Products product)
 	{
 		boolean exist = false;
 		
@@ -43,9 +38,9 @@ public class Catalogue<T> {
 	 * @apiNote add the product to the catalogue
 	 * @param product
 	 */
-	public void add(T product)
+	public void add(Products product)
 	{
-		if(existProduct(product))
+		if(!existProduct(product))
 		{
 			catalogue.add(product);
 		}
@@ -55,7 +50,7 @@ public class Catalogue<T> {
 	 * @apiNote remove the product from the catalogue
 	 * @param product
 	 */
-	public void remove(T product)
+	public void remove(Products product)
 	{
 		if(existProduct(product))
 		{
@@ -68,7 +63,7 @@ public class Catalogue<T> {
 	 * @param index of the product
 	 * @return the product in the index i
 	 */
-	public T getElement(int i)
+	public Products getElement(int i)
 	{
 		return catalogue.get(i);
 	}
@@ -95,77 +90,6 @@ public class Catalogue<T> {
 		return catalogue.size();
 	}
 	
-	public void write()
-	{
-		FileOutputStream fos;
-		ObjectOutputStream oos = null;
-		try 
-		{
-			fos = new FileOutputStream(file_products);
-			oos = new ObjectOutputStream(fos);
-			
-			for(int i = 0; i < catalogue.size(); i++)
-			{
-				oos.writeObject(catalogue.get(i));
-			}
-		} 
-		catch (IOException e) 
-		{
-			e.printStackTrace();
-		}
-		finally 
-		{
-			try 
-			{
-				oos.close();
-			}
-			catch (IOException e)
-			{
-				e.printStackTrace();
-			}
-		}
-	}
-	
-	public Catalogue<T> read()
-	{
-		ObjectInputStream ois = null;
-		Catalogue<T> catalogue = new Catalogue<T>();
-		try 
-		{
-			ois = new ObjectInputStream(new FileInputStream(file_products));
-			T product = null;
-			
-			while((product = (T) ois.readObject()) != null)
-			{
-				catalogue.add(product);
-			}
-		} 
-		catch (EOFException e) 
-		{
-			System.out.println("Fin del archivo");
-		} 
-		catch (IOException e) 
-		{
-			e.printStackTrace();
-		} 
-		catch (ClassNotFoundException e)
-		{
-			e.printStackTrace();
-		}
-		finally 
-		{
-			try 
-			{
-				ois.close();
-			} 
-			catch (IOException e)
-			{
-				e.printStackTrace();
-			}
-		}
-		
-		return catalogue;
-	}
 	
 }
 
