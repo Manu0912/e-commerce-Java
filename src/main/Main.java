@@ -6,7 +6,6 @@ import Products.Estate;
 import Products.HomeAppliances;
 import Products.Products;
 import Products.Vehicle;
-
 public class Main {
 
 	public static void main(String[] args) {		
@@ -27,7 +26,5 @@ public class Main {
 		c2 = catalogue.read();
 		
 		System.out.println(c2.getElement(0));
-		
 	}
-
 }

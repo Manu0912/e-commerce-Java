@@ -8,7 +8,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
-import Products.Products;
 
 public class Catalogue<T> {
 	private ArrayList<T> catalogue;
@@ -127,14 +126,14 @@ public class Catalogue<T> {
 		}
 	}
 	
-	public Catalogue read()
+	public Catalogue<T> read()
 	{
 		ObjectInputStream ois = null;
 		Catalogue<T> catalogue = new Catalogue<T>();
 		try 
 		{
 			ois = new ObjectInputStream(new FileInputStream(file_products));
-			T product;
+			T product = null;
 			
 			while((product = (T) ois.readObject()) != null)
 			{
