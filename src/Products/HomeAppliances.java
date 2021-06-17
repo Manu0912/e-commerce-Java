@@ -53,8 +53,7 @@ public class HomeAppliances extends Products{
 
 	@Override
 	public String toString() {
-		return super.toString() + "HomeAppliances [getVoltage()=" + getVoltage() + ", getWidth()=" + getWidth() + ", getWeight()="
-				+ getHeight() + "]";
+		return super.toString() + "Voltage" + getVoltage() + "\nAncho: " + getWidth() + "\nAlto: "	+ getHeight();
 	}
 
 	@Override

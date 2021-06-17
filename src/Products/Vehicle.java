@@ -53,7 +53,10 @@ public class Vehicle extends Products{
 
 	@Override
 	public String toString() {
-		return super.toString() + "Vehicle [getType()=" + getType() + ", isNew()=" + isNew() + ", getKm()=" + getKm() + "]";
+		String isNew = "";
+		if(isNew()) isNew = "Si";
+		else isNew = "No";
+		return super.toString() + "Marca: " + getType() + "\nEs nueva: " + isNew + "\nKilometros" + getKm();
 	}
 
 	@Override

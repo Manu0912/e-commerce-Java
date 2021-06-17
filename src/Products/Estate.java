@@ -53,8 +53,10 @@ public class Estate extends Products{
 
 	@Override
 	public String toString() {
-		return super.toString() + "Estate [getRooms()=" + getRooms() + ", isGarage()=" + isGarage()
-				+ ", getCity()=" + getCity() + "]";
+		String garage = "";
+		if(isGarage()) garage = "Si";
+		else garage = "No";
+		return super.toString() + "Ambientes: " + getRooms() + "\nGarage: " + garage + "\nCiudad: " + getCity();
 	}
 
 	@Override

@@ -54,7 +54,7 @@ public class Clothing extends Products{
 
 	@Override
 	public String toString() {
-		return super.toString() + "Clothing [getSize()=" + getSize() + ", getColour()=" + getColour() + ", getBrand()=" + getBrand() + "]";
+		return super.toString() + "Talle: " + getSize() + "\nColor: " + getColour() + "\nMarca: " + getBrand();
 	}
 
 	@Override
