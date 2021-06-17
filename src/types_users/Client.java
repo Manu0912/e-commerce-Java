@@ -14,7 +14,7 @@ public class Client extends Users{
 	private String	Address;
 	private CreditCard card;
 	private Cart cart;
-	private ArrayList<Orders> orders;
+	private ArrayList<Orders> orders;/// esto se elimina, al tener la clase orders, creo que no hace falta
 	
 	public Client()
 	{
