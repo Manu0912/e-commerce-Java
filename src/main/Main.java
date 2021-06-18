@@ -1,15 +1,21 @@
 package main;
 
 import GraphicInterface.LogIn;
+import GraphicInterface.Perfil;
+import GraphicInterface.Principal;
 import List.UserList;
+import types_users.Admin;
+import types_users.Client;
 import types_users.Users;
 
 public class Main {
 
 	public static void main(String[] args) {
-		LogIn inicio = new LogIn();
+		//LogIn inicio = new LogIn();
 		//Signup signup = new Signup();
-		//Principal principal = new Principal();
+		//Principal principal = new Principal(new Client());
+		Perfil perfil = new Perfil(new Client("Matias", "Morilla", "123", "matias@gmail.com", "Mar del Plata", "Patagones 834"));
+		//Perfil perfil = new Perfil(new Admin("Matias", "Morilla", "123", "matias@gmail.com"));
 
 		
 	}

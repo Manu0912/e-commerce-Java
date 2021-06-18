@@ -66,8 +66,7 @@ public abstract class Users implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Users [getId()=" + getId() + ", getName()=" + getName() + ", getLastName()=" + getLastName()
-				+ ", getPassword()=" + getPassword() + ", getEmail()=" + getEmail() + "]";
+		return "Nombre de usuario: " + getName() + "\tApellido: " + getLastName() + "\nEmail: " + getEmail() + "\t";
 	}
 	
 	public int generateRandomId() // hacer bien la funcion

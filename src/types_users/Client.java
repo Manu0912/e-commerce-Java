@@ -30,6 +30,7 @@ public class Client extends Users{
 		super(name, lastName, password, email);
 		City = city;
 		Address = address;
+		card = new CreditCard();
 	}
 	
 	// GETTERS
@@ -83,10 +84,13 @@ public class Client extends Users{
 	public void setOrders(ArrayList<Orders> orders) {
 		this.orders = orders;
 	}
-
-
+	
 	// METHODS
-
+	
+	@Override
+	public String toString() {
+		return super.toString() + "Ciudad: " + getCity() + "\nDireccion: " + getAddress() + "\tTarjeta de credito: " + getCard().getNumber();
+	}
 		
 	/**
 	 * 

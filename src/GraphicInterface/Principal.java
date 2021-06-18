@@ -18,21 +18,23 @@ import Products.Clothing;
 import Products.Estate;
 import Products.HomeAppliances;
 import Products.Vehicle;
+import types_users.Users;
 
 
 public class Principal extends JFrame implements ActionListener{
 
 	private JButton btnTodos, btnE, btnI, btnV, btnR, btnC, btnP;
-	private JPanel panelBtn, panelProdcutos, panelCart, panelPerfil;
+	private JPanel panelBtn, panelProdcutos, panelCart;
 	private JScrollPane scrolPane;
 	private ArrayList<JPanel> arrayPanel;
+	private Users user;
 	
 	private Color btnColor = new Color(233, 233, 233);
 	private Color panelColor = new Color(100, 170, 255);
 	private final static int width = 1000;
 	private final static int height = 600;
 	
-	public Principal()
+	public Principal(Users user)
 	{
 		this.setLayout(null);
 		this.setTitle("Principal");
@@ -41,6 +43,9 @@ public class Principal extends JFrame implements ActionListener{
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		// USER
+		this.user = user;
 		
 		// PANELS
 		
@@ -61,7 +66,7 @@ public class Principal extends JFrame implements ActionListener{
 		scrolPane.setBounds(0,75, width - 20, 600);
 		scrolPane.setVisible(true);
 		this.add(scrolPane);
-		
+				
 		// BTN
 		
 		btnTodos = new JButton("Todos");
@@ -151,6 +156,15 @@ public class Principal extends JFrame implements ActionListener{
 			
 			arrayPanel = mostrarR();
 			setBounds(arrayPanel);
+		}
+		else if(e.getSource() == btnP)
+		{
+			Perfil perfil = new Perfil(user);
+			this.setVisible(false);
+		}
+		else if(e.getSource() == btnC)
+		{
+			
 		}
 	}
 	
@@ -341,7 +355,6 @@ public class Principal extends JFrame implements ActionListener{
 			arrayPanel.get(i).setVisible(false);
 		}
 	}
-	
 	
 	
 }

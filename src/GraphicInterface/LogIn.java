@@ -22,6 +22,7 @@ public class LogIn extends JFrame implements ActionListener{
 	private JPasswordField txtPassword;
 	private JButton buttonLogin, buttonSignup;
 	private TextPrompt phUser, phPassword;
+	private Users user;
 	
 	private final static int width = 600;
 	private final static int height = 600;
@@ -76,7 +77,7 @@ public class LogIn extends JFrame implements ActionListener{
 		{
 			if(validateUser())
 			{
-				Principal principal = new Principal();
+				Principal principal = new Principal(user);
 				this.setVisible(false);
 			}
 			else
@@ -97,6 +98,7 @@ public class LogIn extends JFrame implements ActionListener{
 			Entry<Integer, Users> entry = it.next();
 			if(entry.getValue().getName().equals(txtUser.getText()) && entry.getValue().getPassword().equals(txtPassword.getText()))
 			{
+				user = entry.getValue();
 				valid = true;
 			}
 		}

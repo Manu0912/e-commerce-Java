@@ -106,7 +106,7 @@ public class SignUp extends JFrame implements ActionListener{
 				UserUtiles.write(client);
 				
 				// entramos al ecommerce
-				Principal principal = new Principal();
+				Principal principal = new Principal(client);
 				this.setVisible(false);
 			}
 				

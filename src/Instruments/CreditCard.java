@@ -11,6 +11,7 @@ public class CreditCard {
 	
 	public CreditCard()
 	{
+		number = "";
 		balance = -1; // el balance es igual -1 para saber si el usuario agrego la tarjeta o no
 	}
 
@@ -32,18 +33,25 @@ public class CreditCard {
 		Character[] number2 = new Character[number.length()];
 		String numberFormated = "";
 		
-		for(int i = 0; i < number.length(); i++)
-		{ 
-			if(i < 12)
-			{
-				number2[i] = '*';
+		if(number == "")
+		{
+			numberFormated = "Ingrese una tarjeta";
+		}
+		else
+		{
+			for(int i = 0; i < number.length(); i++)
+			{ 
+				if(i < 12)
+				{
+					number2[i] = '*';
+				}
+				else
+				{
+					number2[i] = number.charAt(i);
+				}
+				
+				numberFormated += number2[i];
 			}
-			else
-			{
-				number2[i] = number.charAt(i);
-			}
-			
-			numberFormated += number2[i];
 		}
 		
 		return numberFormated;
