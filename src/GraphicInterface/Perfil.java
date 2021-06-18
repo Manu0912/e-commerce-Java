@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import types_users.Client;
@@ -145,6 +146,10 @@ public class Perfil extends JFrame implements ActionListener{
 		{
 			Principal principal = new Principal(user);
 			this.setVisible(false);
+		}
+		else if(e.getSource() == btnAddCard)
+		{
+			JOptionPane.showInputDialog(this, "caca"); // pedir datos por aca
 		}
 	}
 
