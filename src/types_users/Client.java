@@ -6,25 +6,23 @@ import java.util.Date;
 import Instruments.Cart;
 import Instruments.CreditCard;
 import List.Orders;
+import Order.Order;
 import Products.Products;
 
-public class Client extends Users{
-	private String	City;
-	private String	Address;
+public class Client extends Users {
+	private String City;
+	private String Address;
 	private CreditCard card;
 	private Cart cart;
-	private ArrayList<Orders> orders;/// esto se elimina, al tener la clase orders, creo que no hace falta
-	
-	public Client()
-	{
-		
+	private Orders orders;
+
+	public Client() {
+
 	}
-	
-	
+
 	public Client(String name, String lastName, String password, String email) {
 		super(name, lastName, password, email);
 	}
-
 
 	public Client(String name, String lastName, String password, String email, String city, String address) {
 		super(name, lastName, password, email);
@@ -32,66 +30,15 @@ public class Client extends Users{
 		Address = address;
 		card = new CreditCard();
 	}
-	
-	// GETTERS
-	
-	public String getCity() {
-		return City;
-	}
 
-
-	public String getAddress() {
-		return Address;
-	}
-
-
-	public CreditCard getCard() {
-		return card;
-	}
-
-
-	public Cart getCart() {
-		return cart;
-	}
-
-
-	public ArrayList<Orders> getOrders() {
-		return orders;
-	}
-	
-	// SETTERS
-	
-	public void setCity(String city) {
-		City = city;
-	}
-
-
-	public void setAddress(String address) {
-		Address = address;
-	}
-
-
-	public void setCard(CreditCard card) {
-		this.card = card;
-	}
-
-
-	public void setCart(Cart cart) {
-		this.cart = cart;
-	}
-
-
-	public void setOrders(ArrayList<Orders> orders) {
-		this.orders = orders;
-	}
-	
 	// METHODS
-	
+
 	@Override
 	public String toString() {
-		return super.toString() + "Ciudad: " + getCity() + "\nDireccion: " + getAddress() + "\tTarjeta de credito: " + getCard().getNumber();
+		return super.toString() + "Ciudad: " + getCity() + "\nDireccion: " + getAddress() + "\tTarjeta de credito: "
+				+ getCard().getNumber();
 	}
-		
+
 	/**
 	 * 
 	 * @param name
@@ -101,16 +48,14 @@ public class Client extends Users{
 	 * @apiNote It create a Credit Card
 	 */
 	@SuppressWarnings("deprecation")
-	public void enterCard(String name, String number, String dueDate, int segurityCode, float balance)
-	{
+	public void enterCard(String name, String number, String dueDate, int segurityCode, float balance) {
 		Date date = new Date(); // 02/04/22
 		date.setDate(dueDate.charAt(0) + dueDate.charAt(1));
 		date.setMonth(dueDate.charAt(3) + dueDate.charAt(4));
 		date.setYear(dueDate.charAt(6) + dueDate.charAt(7));
-		
+
 		this.card = new CreditCard(name, number, date, segurityCode, balance);
 	}
-	
 
 	/**
 	 * 
@@ -118,70 +63,78 @@ public class Client extends Users{
 	 * @param quantity
 	 * @apiNote add product to cart
 	 */
-	public void addToCart(Products product, Integer quantity)
-	{
+	public void addToCart(Products product, Integer quantity) {
 		cart.add(product, quantity);
 	}
-	
+
 	/**
 	 * 
 	 * @param product
 	 * @apiNote remove product from cart
 	 */
-	public void removeFromCart(Products product)
-	{
+	public void removeFromCart(Products product) {
 		cart.remove(product);
 	}
-	
+
 	/**
-	 * @apiNote Verifies if the user has a credit card and if have a balance. If so, subtract the final price from the balance
+	 * @apiNote Verifies if the user has a credit card and if have a balance. If so,
+	 *          subtract the final price from the balance
 	 * @return
 	 */
-	public StringBuilder buy()
-	{
+	public StringBuilder buy() {
 		StringBuilder builder = new StringBuilder();
 		float total = cart.calculateSubTotal();
-		
-		if(card.getBalance() == -1)
-		{
+		Order order;
+
+		if (card.getBalance() == -1) {
 			builder.append("Debe agregar una tarjeta de credito");
-		}
-		else if(card.getBalance() < total)
-		{
+		} else if (card.getBalance() < total) {
 			builder.append("No tiene saldo suficiente");
-		}
-		else
-		{
+		} else {
+			order = new Order();
+			order.setEmail(super.getEmail());
+			order.addProducts(cart);
 			total = cart.buy();
 			card.setBalance(card.getBalance() - total);
 			builder.append("Se realizo la compra por: $" + total);
 		}
-		
+
 		return builder;
 	}
 
+	// GETTERS
+
+	public String getCity() {
+		return City;
+	}
+
+	public String getAddress() {
+		return Address;
+	}
+
+	public CreditCard getCard() {
+		return card;
+	}
+
+	public Cart getCart() {
+		return cart;
+	}
+
+	// SETTERS
+
+	public void setCity(String city) {
+		City = city;
+	}
+
+	public void setAddress(String address) {
+		Address = address;
+	}
+
+	public void setCard(CreditCard card) {
+		this.card = card;
+	}
+
+	public void setCart(Cart cart) {
+		this.cart = cart;
+	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
