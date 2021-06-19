@@ -1,8 +1,9 @@
 package Instruments;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class CreditCard {
+public class CreditCard implements Serializable{
 	private String name;
 	private String number;
 	private Date dueDate;

@@ -1,5 +1,6 @@
 package Order;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -9,7 +10,7 @@ import java.util.Map.Entry;
 import Instruments.Cart;
 import Products.Products;
 
-public class Order {
+public class Order implements Serializable{
     private TreeMap<Integer, Products> order;
     private UUID id;
     private String buyDate;

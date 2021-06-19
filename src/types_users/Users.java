@@ -1,6 +1,11 @@
 package types_users;
 
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map.Entry;
+
+import Files.UserUtiles;
 
 public abstract class Users implements Serializable{
 	private int id;
@@ -69,12 +74,24 @@ public abstract class Users implements Serializable{
 		return "Nombre de usuario: " + getName() + "\tApellido: " + getLastName() + "\nEmail: " + getEmail() + "\t";
 	}
 	
-	public int generateRandomId() // hacer bien la funcion
+	public int generateRandomId()
 	{
-		float id = (float) Math.random() * 10;
-		int id1 = (int) id;
+		HashMap<Integer, Users> hashMap = UserUtiles.read();
+		Iterator<Entry<Integer, Users>> it = hashMap.entrySet().iterator();
+		boolean flag = true;
+		float id = 0;
+		int idINT = 0;
 		
-		return id1;
+		while(it.hasNext() || flag == true)
+		{
+			Entry<Integer, Users> entry = it.next();
+			id = (float) Math.random() * 1000000;
+			idINT = (int) id;
+			
+			if(entry.getKey() == idINT) flag = true;
+			else flag = false;
+		}
+		return idINT;
 	}
 	
 }

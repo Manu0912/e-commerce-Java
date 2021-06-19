@@ -82,11 +82,11 @@ public class UserUtiles {
 		try 
 		{
 			ois = new ObjectInputStream(new FileInputStream(file_users));
-			Client client;
+			Users user;
 			
-			while((client = (Client) ois.readObject()) != null)
+			while((user = (Users) ois.readObject()) != null)
 			{
-				hashMap.put(client.getId(),client);
+				hashMap.put(user.getId(),user);
 			}
 		} 
 		catch (EOFException e) 

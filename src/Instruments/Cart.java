@@ -1,10 +1,11 @@
 package Instruments;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import Products.Products;
 
-public class Cart {
+public class Cart implements Serializable{
 	private ArrayList<Integer> quantity;
 	private float total;
 	private ArrayList<Products> products;

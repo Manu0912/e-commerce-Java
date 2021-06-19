@@ -1,5 +1,10 @@
 package main;
 
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map.Entry;
+
+import Files.UserUtiles;
 import GraphicInterface.LogIn;
 import GraphicInterface.Perfil;
 import GraphicInterface.Principal;
@@ -14,11 +19,24 @@ public class Main {
 		//LogIn inicio = new LogIn();
 		//Signup signup = new Signup();
 		//Principal principal = new Principal(new Client());
-		Perfil perfil = new Perfil(new Client("Matias", "Morilla", "123", "matias@gmail.com", "Mar del Plata", "Patagones 834"));
+		//Perfil perfil = new Perfil(new Client("Matias", "Morilla", "123", "matias@gmail.com", "Mar del Plata", "Patagones 834"));
 		//Perfil perfil = new Perfil(new Admin("Matias", "Morilla", "123", "matias@gmail.com"));
+
+		HashMap<Integer, Users> hashMap = UserUtiles.read();
+		Iterator<Entry<Integer, Users>> it = hashMap.entrySet().iterator();
+		
+		while(it.hasNext())
+		{
+			Entry<Integer, Users> entry = it.next();
+			System.out.println("A: " + entry.getValue().getName() + entry.getKey());
+
+		}
+		
 
 		
 	}
+	
+	
 
 	public static boolean login(UserList userList, String userName, String password) {
 		Users user = userList.getUser(userName);
