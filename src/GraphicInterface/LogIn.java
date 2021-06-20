@@ -96,12 +96,8 @@ public class LogIn extends JFrame implements ActionListener{
 		while(it.hasNext())
 		{
 			Entry<Integer, Users> entry = it.next();
-			System.out.println("C: " + txtUser.getText());
-			System.out.println("A: " + entry.getValue().getName());
 			if(entry.getValue().getName().equals(txtUser.getText()) && entry.getValue().getPassword().equals(txtPassword.getText()))
 			{
-				System.out.println("C: " + txtUser.getText());
-				System.out.println("A: " + entry.getValue().getName());
 				user = entry.getValue();
 				valid = true;
 			}

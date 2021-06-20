@@ -2,6 +2,7 @@ package Files;
 
 import java.io.EOFException;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -9,21 +10,23 @@ import java.io.ObjectOutputStream;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map.Entry;
+import java.util.NoSuchElementException;
 
 import types_users.Client;
 import types_users.Users;
 
 public class UserUtiles {
 	
-	private final static String file_users = "users.dat";
+	private final static String file_users = "Users.dat";
 	
 	public static void write(HashMap<Integer, Users> hashMap)
 	{
 		ObjectOutputStream oos = null;
-		
+		FileOutputStream fos;
 		try 
 		{
-			oos = new ObjectOutputStream(new FileOutputStream(file_users));
+			fos = new FileOutputStream(file_users);
+			oos = new ObjectOutputStream(fos);
 			Iterator<Entry<Integer, Users>> it = hashMap.entrySet().iterator();
 			
 			while(it.hasNext())
@@ -51,11 +54,21 @@ public class UserUtiles {
 	public static void write(Users user)
 	{
 		ObjectOutputStream oos = null;
-		
+		FileOutputStream fos;
+		HashMap<Integer, Users> hashMap = UserUtiles.read();
+		hashMap.put(user.getId(), user);
+	
 		try 
 		{
-			oos = new ObjectOutputStream(new FileOutputStream(file_users));
-			oos.writeObject(user);
+			fos = new FileOutputStream(file_users);
+			oos = new ObjectOutputStream(fos);
+			Iterator<Entry<Integer, Users>> it = hashMap.entrySet().iterator();
+			
+			while(it.hasNext())
+			{
+				Entry<Integer, Users> entry = it.next(); 
+				oos.writeObject(entry.getValue());
+			}
 		} 
 		catch (IOException e) 
 		{
@@ -78,10 +91,11 @@ public class UserUtiles {
 	{
 		HashMap<Integer, Users> hashMap = new HashMap<Integer, Users>();
 		ObjectInputStream ois = null;
-		
+		FileInputStream fis;
 		try 
 		{
-			ois = new ObjectInputStream(new FileInputStream(file_users));
+			fis = new FileInputStream(file_users);
+			ois = new ObjectInputStream(fis);
 			Users user;
 			
 			while((user = (Users) ois.readObject()) != null)
@@ -89,6 +103,15 @@ public class UserUtiles {
 				hashMap.put(user.getId(),user);
 			}
 		} 
+		catch(FileNotFoundException e)
+		{
+			
+		}
+		catch(NoSuchElementException e)
+		{
+			//e.printStackTrace();
+			System.out.println(e.getMessage());
+		}
 		catch (EOFException e) 
 		{
 			System.out.println("Fin del archivo");

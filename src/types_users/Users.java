@@ -74,7 +74,7 @@ public abstract class Users implements Serializable{
 		return "Nombre de usuario: " + getName() + "\tApellido: " + getLastName() + "\nEmail: " + getEmail() + "\t";
 	}
 	
-	public int generateRandomId()
+	/*public int generateRandomId()
 	{
 		HashMap<Integer, Users> hashMap = UserUtiles.read();
 		Iterator<Entry<Integer, Users>> it = hashMap.entrySet().iterator();
@@ -91,6 +91,18 @@ public abstract class Users implements Serializable{
 			if(entry.getKey() == idINT) flag = true;
 			else flag = false;
 		}
+		return idINT;
+	}*/
+	
+	public int generateRandomId()
+	{
+
+		float id = 0;
+		int idINT = 0;
+
+		id = (float) Math.random() * 1000000;
+		idINT = (int) id;
+
 		return idINT;
 	}
 	
