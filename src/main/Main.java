@@ -12,6 +12,7 @@ import GraphicInterface.Perfil;
 import GraphicInterface.Principal;
 import List.Catalogue;
 import List.UserList;
+import Products.Products;
 import types_users.Admin;
 import types_users.Client;
 import types_users.Users;
@@ -25,6 +26,7 @@ public class Main {
 		//Perfil perfil = new Perfil(new Client("Matias", "Morilla", "123", "matias@gmail.com", "Mar del Plata", "Patagones 834"));
 		//Perfil perfil = new Perfil(new Admin("Matias", "Morilla", "123", "matias@gmail.com"));		
 		//CartInterface cart = new CartInterface(new Client("Matias", "Morilla", "123", "matias@gmail.com", "Mar del Plata", "Patagones 834"));
+		
 		
 	}
 	

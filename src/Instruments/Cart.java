@@ -3,6 +3,8 @@ package Instruments;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import Files.CatalogueUtiles;
+import List.Catalogue;
 import Products.Products;
 
 public class Cart implements Serializable{
@@ -157,6 +159,7 @@ public class Cart implements Serializable{
 	 */
 	public float buy()
 	{
+		Catalogue catalogue = CatalogueUtiles.read();
 		this.total = calculateSubTotal(); // falta agregar descuentos, si es que los hay.
 		
 		if(quantity.size() == products.size())
@@ -165,8 +168,11 @@ public class Cart implements Serializable{
 			{
 				if(products.get(i).getStock() > quantity.get(i))
 				{
+					catalogue.remove(products.get(i));
 					products.get(i).substractStock(quantity.get(i));
-					remove(products.get(i));
+					catalogue.add(products.get(i));
+					CatalogueUtiles.write(catalogue);
+					remove();
 				}
 			}
 		}

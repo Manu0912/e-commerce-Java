@@ -178,34 +178,7 @@ public class Principal extends JFrame implements ActionListener{
 		}
 		else
 		{
-			if(user instanceof Client)
-			{
-				Catalogue catalogue = CatalogueUtiles.read();
-				HashMap<Integer, Users> hashMap = UserUtiles.read();
-				Iterator<Entry<Integer, Users>> it = hashMap.entrySet().iterator();
-				Client client;
-				
-				for(int i = 0; i < catalogue.count(); i++)
-				{
-					if(e.getSource() == arrayPanel.get(i).getComponent(1))
-					{
-						while(it.hasNext())
-						{
-							Entry<Integer, Users> entry = it.next();
-							if(entry.getKey() == user.getId())
-							{
-								client = (Client) entry.getValue();
-								client.addToCart(catalogue.getElement(i));
-								UserUtiles.write(client);
-							}
-						}
-					}
-				}
-			}
-			else 
-			{
-				JOptionPane.showConfirmDialog(this, "No puede usar esta funcion!");
-			}
+			addToCart(e);
 		}
 	}
 	
@@ -400,48 +373,44 @@ public class Principal extends JFrame implements ActionListener{
 		}
 	}
 	
-	public void addToCart(ArrayList<JPanel> arrayPanel, Products product, ActionEvent e)
+	public void addToCart(ActionEvent e)
 	{
-		Catalogue catalogue = CatalogueUtiles.read();
-		HashMap<Integer, Users> hashMap = UserUtiles.read();
-		Iterator<Entry<Integer, Users>> it = hashMap.entrySet().iterator();
-		Client client;
-		
-		for(int i = 0; i < catalogue.count(); i++)
+		if(user instanceof Client)
 		{
-			if(e.getSource() == arrayPanel.get(i).getComponent(2))
+			Catalogue catalogue = CatalogueUtiles.read();
+			HashMap<Integer, Users> hashMap = UserUtiles.read();
+			Iterator<Entry<Integer, Users>> it = hashMap.entrySet().iterator();
+			Client client;
+			
+			for(int i = 0; i < catalogue.count(); i++)
 			{
-				while(it.hasNext())
+				if(e.getSource() == arrayPanel.get(i).getComponent(1))
 				{
-					Entry<Integer, Users> entry = it.next();
-					if(entry.getKey() == user.getId())
+					while(it.hasNext())
 					{
-						client = (Client) entry.getValue();
-						client.addToCart(product);
-						UserUtiles.write(client);
+						Entry<Integer, Users> entry = it.next();
+						if(entry.getKey() == user.getId())
+						{
+							client = (Client) entry.getValue();
+							client.addToCart(catalogue.getElement(i));
+							UserUtiles.write(client);
+						}
 					}
 				}
 			}
 		}
+		else 
+		{
+			JOptionPane.showConfirmDialog(this, "No puede usar esta funcion!");
+		}
 	}
+
+	
 }
 
 
 
-/*HashMap<Integer, Users> hashMap = UserUtiles.read();
-		Iterator<Entry<Integer, Users>> it = hashMap.entrySet().iterator();
-		Client client;
-		
-		while(it.hasNext())
-		{
-			Entry<Integer, Users> entry = it.next();
-			if(entry.getKey() == user.getId())
-			{
-				client = (Client) entry.getValue();
-				client.addToCart(product);
-				UserUtiles.write(client);
-			}
-		}*/
+
 
 
 

@@ -17,21 +17,21 @@ public class Catalogue {
 	/**
 	 * 
 	 * @param product of type Products 
-	 * @return true if the product exist or false if not
+	 * @return the index if the product exist or -1 if not
 	 */
-	public boolean existProduct(Products product)
+	public int existProduct(Products product)
 	{
-		boolean exist = false;
+		int pos = -1;
 		
 		for(int i = 0; i < catalogue.size(); i++)
 		{
-			if(catalogue.get(i).equals(product))
+			if(catalogue.get(i).getName().equals(product.getName()))
 			{
-				exist = true;
+				pos = i;
 			}
 		}
 		
-		return exist;
+		return pos;
 	}
 	
 	/**
@@ -40,9 +40,15 @@ public class Catalogue {
 	 */
 	public void add(Products product)
 	{
-		if(!existProduct(product))
+		int pos = existProduct(product);
+		
+		if(pos == -1)
 		{
 			catalogue.add(product);
+		}
+		else
+		{
+			catalogue.add(pos, product);
 		}
 	}
 	
@@ -52,9 +58,12 @@ public class Catalogue {
 	 */
 	public void remove(Products product)
 	{
-		if(existProduct(product))
+		int pos = existProduct(product);
+		
+		if(pos != -1)
 		{
-			catalogue.remove(product);
+			catalogue.remove(pos);
+
 		}
 	}
 	

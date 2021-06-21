@@ -20,12 +20,12 @@ public class Client extends Users {
 
 	}
 
-	public Client(String name, String lastName, String password, String email) {
-		super(name, lastName, password, email);
+	public Client(String UserName, String name_lastName, String password, String email) {
+		super(UserName, name_lastName, password, email);
 	}
 
-	public Client(String name, String lastName, String password, String email, String city, String address) {
-		super(name, lastName, password, email);
+	public Client(String UserName, String name_lastName, String password, String email, String city, String address) {
+		super(UserName, name_lastName, password, email);
 		City = city;
 		Address = address;
 		card = new CreditCard();

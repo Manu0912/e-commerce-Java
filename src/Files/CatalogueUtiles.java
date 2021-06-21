@@ -45,6 +45,42 @@ public class CatalogueUtiles {
 		}
 	}
 	
+	
+	public static void write(Products product)
+	{
+		FileOutputStream fos;
+		ObjectOutputStream oos = null;
+		Catalogue catalogue = CatalogueUtiles.read();
+		catalogue.add(product);
+		
+		try 
+		{
+			fos = new FileOutputStream(file_products);
+			oos = new ObjectOutputStream(fos);
+			
+			for(int i = 0; i < catalogue.count(); i++)
+			{
+				oos.writeObject(catalogue.getElement(i));
+			}
+		} 
+		catch (IOException e) 
+		{
+			e.printStackTrace();
+		}
+		finally 
+		{
+			try 
+			{
+				oos.close();
+			}
+			catch (IOException e)
+			{
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	
 	public static Catalogue read()
 	{
 		ObjectInputStream ois = null;

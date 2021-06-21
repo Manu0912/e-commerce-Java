@@ -9,8 +9,8 @@ import Files.UserUtiles;
 
 public abstract class Users implements Serializable{
 	private int id;
-	private	String Name;
-	private String LastName;
+	private	String userName;
+	private String name_lastName;
 	private String Password;
 	private	String Email;
 
@@ -21,8 +21,8 @@ public abstract class Users implements Serializable{
 	
 	public Users(String name, String lastName, String password, String email) {
 		id = generateRandomId();
-		Name = name;
-		LastName = lastName;
+		userName = name;
+		name_lastName = lastName;
 		Password = password;
 		Email = email;
 	}
@@ -34,11 +34,11 @@ public abstract class Users implements Serializable{
 	}
 	
 	public String getName() {
-		return Name;
+		return userName;
 	}
 	
-	public String getLastName() {
-		return LastName;
+	public String getName_lastName() {
+		return name_lastName;
 	}
 	
 	public String getPassword() {
@@ -52,11 +52,11 @@ public abstract class Users implements Serializable{
 	// SETTERS
 
 	public void setName(String name) {
-		Name = name;
+		userName = name;
 	}
 
-	public void setLastName(String lastName) {
-		LastName = lastName;
+	public void setName_lastName(String lastName) {
+		name_lastName = lastName;
 	}
 
 	public void setPassword(String password) {
@@ -71,28 +71,9 @@ public abstract class Users implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Nombre de usuario: " + getName() + "\tApellido: " + getLastName() + "\nEmail: " + getEmail() + "\t";
+		return "Nombre de usuario: " + getName() + "\tNombre y Apellido: " + getName_lastName() + "\nEmail: " + getEmail() + "\t";
 	}
 	
-	/*public int generateRandomId()
-	{
-		HashMap<Integer, Users> hashMap = UserUtiles.read();
-		Iterator<Entry<Integer, Users>> it = hashMap.entrySet().iterator();
-		boolean flag = true;
-		float id = 0;
-		int idINT = 0;
-		
-		while(it.hasNext() || flag == true)
-		{
-			Entry<Integer, Users> entry = it.next();
-			id = (float) Math.random() * 1000000;
-			idINT = (int) id;
-			
-			if(entry.getKey() == idINT) flag = true;
-			else flag = false;
-		}
-		return idINT;
-	}*/
 	
 	public int generateRandomId()
 	{

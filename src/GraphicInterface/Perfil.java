@@ -60,12 +60,12 @@ public class Perfil extends JFrame implements ActionListener{
 		
 		// LABELS
 		
-		lName = new JLabel("Nombre: " + user.getName());
+		lName = new JLabel("Usuario: " + user.getName());
 		lName.setBounds(10, 10, 400, 30);
 		lName.setFont(new Font(null, 1, 20));
 		panelInfo.add(lName);
 		
-		lLastName = new JLabel("Apellido: " + user.getLastName());
+		lLastName = new JLabel("Nombre y apellido: " + user.getName_lastName());
 		lLastName.setBounds(10, 50, 400, 30);
 		lLastName.setFont(new Font(null, 1, 20));
 		panelInfo.add(lLastName);
@@ -167,8 +167,8 @@ public class Perfil extends JFrame implements ActionListener{
 		}
 		else if(e.getSource() == btnChangeL)
 		{
-			String lastname = JOptionPane.showInputDialog(this, "Ingrese el nuevo apellido: "); 
-			changeLastname(lastname);
+			String name_lastName = JOptionPane.showInputDialog(this, "Ingrese su nuevo nombre y apellido: "); 
+			changeName_lastName(name_lastName);
 		}
 		else if(e.getSource() == btnChangeA)
 		{
@@ -217,7 +217,7 @@ public class Perfil extends JFrame implements ActionListener{
 		}
 	}
 	
-	public void changeLastname(String newLastname)
+	public void changeName_lastName(String Name_lastName)
 	{
 		HashMap<Integer, Users> hashMap = UserUtiles.read();
 		Iterator<Entry<Integer, Users>> it = hashMap.entrySet().iterator();
@@ -227,7 +227,7 @@ public class Perfil extends JFrame implements ActionListener{
 			Entry<Integer, Users> entry = it.next();
 			if(entry.getKey() == user.getId())
 			{
-				entry.getValue().setLastName(newLastname);
+				entry.getValue().setName_lastName(Name_lastName);
 				UserUtiles.write(entry.getValue());
 			}
 		}

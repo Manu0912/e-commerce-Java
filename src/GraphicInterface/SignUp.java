@@ -19,10 +19,10 @@ import types_users.Users;
 
 public class SignUp extends JFrame implements ActionListener{
 
-	private JTextField txtName, txtLastName, txtMail, txtCity, txtAddress;
+	private JTextField txtUserName, txtName_lastName, txtMail, txtCity, txtAddress;
 	private JPasswordField txtPassword;
 	private JButton btnSignin ,btnBack;
-	private TextPrompt phName, phLastName, phPassword, phMail, phCity, phAddress;
+	private TextPrompt phUserName, phName_lastName, phPassword, phMail, phCity, phAddress;
 	
 	private final static int width = 600;
 	private final static int height = 600;
@@ -39,15 +39,15 @@ public class SignUp extends JFrame implements ActionListener{
 		
 		// TXT
 		
-		txtName = new JTextField();
-		txtName.setBounds(80, 105, 185, 30);
-		phName = new TextPrompt("Ingrese su nombre", txtName);
-		this.add(txtName);
+		txtUserName = new JTextField();
+		txtUserName.setBounds(80, 105, 185, 30);
+		phUserName = new TextPrompt("Ingrese su nombre de usuario", txtUserName);
+		this.add(txtUserName);
 		
-		txtLastName = new JTextField();
-		txtLastName.setBounds(300, 105, 185, 30);
-		phLastName = new TextPrompt("Ingrese su apellido", txtLastName);
-		this.add(txtLastName);
+		txtName_lastName = new JTextField();
+		txtName_lastName.setBounds(300, 105, 185, 30);
+		phName_lastName = new TextPrompt("Ingrese su nombre y apellido", txtName_lastName);
+		this.add(txtName_lastName);
 		
 		txtPassword = new JPasswordField();
 		txtPassword.setBounds(80, 155, 185, 30);
@@ -100,7 +100,7 @@ public class SignUp extends JFrame implements ActionListener{
 			if(validNewUser())
 			{
 				// creamos un cliente con los datos
-				Users client = new Client(txtName.getText(), txtLastName.getText(), txtPassword.getText(), txtMail.getText(), txtCity.getText(), txtAddress.getText());
+				Users client = new Client(txtUserName.getText(), txtName_lastName.getText(), txtPassword.getText(), txtMail.getText(), txtCity.getText(), txtAddress.getText());
 				
 				// guardamos el cliente en el archivo
 				UserUtiles.write(client);
@@ -118,8 +118,8 @@ public class SignUp extends JFrame implements ActionListener{
 	{
 		boolean valid = false;
 
-		String name = txtName.getText();
-		String lastName = txtLastName.getText();
+		String name = txtUserName.getText();
+		String lastName = txtName_lastName.getText();
 		String password = txtPassword.getText();
 		String mail = txtMail.getText();
 		String city = txtCity.getText();
