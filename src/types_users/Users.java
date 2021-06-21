@@ -17,7 +17,7 @@ public abstract class Users implements Serializable{
 	
 	public Users() {
 		
-	}
+	} 
 	
 	public Users(String name, String lastName, String password, String email) {
 		id = generateRandomId();

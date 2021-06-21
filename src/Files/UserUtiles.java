@@ -98,7 +98,7 @@ public class UserUtiles {
 			ois = new ObjectInputStream(fis);
 			Users user;
 			
-			while((user = (Users) ois.readObject()) != null)
+			while((user = (Users) ois.readObject()) != null) 
 			{
 				hashMap.put(user.getId(),user);
 			}

@@ -90,6 +90,25 @@ public class Catalogue {
 		return catalogue.size();
 	}
 	
+	/**
+	 * 
+	 * @param name of the product
+	 * @return the product found
+	 */
+	public Products getElementByName(String name)
+	{
+		Products p = null;
+		
+		for(int i = 0; i < catalogue.size(); i++)
+		{
+			if(catalogue.get(i).getName().equals(name))
+			{
+				p = catalogue.get(i);
+			}
+		}
+		
+		return p;
+	}
 	
 }
 

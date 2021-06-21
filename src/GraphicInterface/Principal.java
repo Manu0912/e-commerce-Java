@@ -5,28 +5,37 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map.Entry;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 import Files.CatalogueUtiles;
+import Files.UserUtiles;
 import List.Catalogue;
 import Products.Clothing;
 import Products.Estate;
 import Products.HomeAppliances;
+import Products.Products;
 import Products.Vehicle;
+import types_users.Admin;
+import types_users.Client;
 import types_users.Users;
 
 
 public class Principal extends JFrame implements ActionListener{
 
-	private JButton btnTodos, btnE, btnI, btnV, btnR, btnC, btnP;
-	private JPanel panelBtn, panelProdcutos, panelCart;
+	private JButton btnTodos, btnE, btnI, btnV, btnR, btnC, btnP, btnCarrito;
+	private JPanel panelBtn, panelProdcutos;
 	private JScrollPane scrolPane;
 	private ArrayList<JPanel> arrayPanel;
+	private Products product;
 	private Users user;
 	
 	private Color btnColor = new Color(233, 233, 233);
@@ -164,7 +173,39 @@ public class Principal extends JFrame implements ActionListener{
 		}
 		else if(e.getSource() == btnC)
 		{
-			
+			CartInterface cart = new CartInterface(user);
+			this.setVisible(false);
+		}
+		else
+		{
+			if(user instanceof Client)
+			{
+				Catalogue catalogue = CatalogueUtiles.read();
+				HashMap<Integer, Users> hashMap = UserUtiles.read();
+				Iterator<Entry<Integer, Users>> it = hashMap.entrySet().iterator();
+				Client client;
+				
+				for(int i = 0; i < catalogue.count(); i++)
+				{
+					if(e.getSource() == arrayPanel.get(i).getComponent(1))
+					{
+						while(it.hasNext())
+						{
+							Entry<Integer, Users> entry = it.next();
+							if(entry.getKey() == user.getId())
+							{
+								client = (Client) entry.getValue();
+								client.addToCart(catalogue.getElement(i));
+								UserUtiles.write(client);
+							}
+						}
+					}
+				}
+			}
+			else 
+			{
+				JOptionPane.showConfirmDialog(this, "No puede usar esta funcion!");
+			}
 		}
 	}
 	
@@ -184,7 +225,9 @@ public class Principal extends JFrame implements ActionListener{
 			panel.setBackground(Color.white);
 			panelProdcutos.add(panel);
 			
-			JTextArea txt = new JTextArea(catalogue.getElement(i).toString());
+			this.product = catalogue.getElement(i);
+			
+			JTextArea txt = new JTextArea(product.toString());
 			txt.setBounds(0,0,200,150);
 			txt.setBorder(null);
 			txt.setFocusable(false);
@@ -192,6 +235,7 @@ public class Principal extends JFrame implements ActionListener{
 			
 			JButton btnCarrito = new JButton("Agregar al carrito");
 			btnCarrito.setBounds(20, 150, 150, 30);
+			btnCarrito.addActionListener(this);
 			panel.add(btnCarrito);
 			
 			arrayPanel.add(panel);
@@ -356,12 +400,48 @@ public class Principal extends JFrame implements ActionListener{
 		}
 	}
 	
-	
+	public void addToCart(ArrayList<JPanel> arrayPanel, Products product, ActionEvent e)
+	{
+		Catalogue catalogue = CatalogueUtiles.read();
+		HashMap<Integer, Users> hashMap = UserUtiles.read();
+		Iterator<Entry<Integer, Users>> it = hashMap.entrySet().iterator();
+		Client client;
+		
+		for(int i = 0; i < catalogue.count(); i++)
+		{
+			if(e.getSource() == arrayPanel.get(i).getComponent(2))
+			{
+				while(it.hasNext())
+				{
+					Entry<Integer, Users> entry = it.next();
+					if(entry.getKey() == user.getId())
+					{
+						client = (Client) entry.getValue();
+						client.addToCart(product);
+						UserUtiles.write(client);
+					}
+				}
+			}
+		}
+	}
 }
 
 
 
-
+/*HashMap<Integer, Users> hashMap = UserUtiles.read();
+		Iterator<Entry<Integer, Users>> it = hashMap.entrySet().iterator();
+		Client client;
+		
+		while(it.hasNext())
+		{
+			Entry<Integer, Users> entry = it.next();
+			if(entry.getKey() == user.getId())
+			{
+				client = (Client) entry.getValue();
+				client.addToCart(product);
+				UserUtiles.write(client);
+			}
+		}*/
 
 
 

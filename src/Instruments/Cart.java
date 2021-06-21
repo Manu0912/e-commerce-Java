@@ -12,7 +12,9 @@ public class Cart implements Serializable{
 	
 	public Cart()
 	{
+		quantity = new ArrayList<Integer>();
 		total = 0;
+		products = new ArrayList<Products>();
 	}
 
 
@@ -23,20 +25,34 @@ public class Cart implements Serializable{
 	}
 
 	public float getTotal() {
-		return total;
+		return calculateSubTotal();
 	}
 
 	public ArrayList<Products> getProducts() {
 		return products;
 	}
 	
+	// SETTERS
+	
+	public void setTotal(float total) {
+		this.total = total;
+	}
 	
 	// METHODS
 
 	@Override
 	public String toString() {
-		return "Cart [getQuantity()=" + getQuantity() + ", getTotal()=" + getTotal() + ", getProducts()="
-				+ getProducts() + "]";
+		StringBuilder builder = new StringBuilder();
+		
+		for(int i = 0; i < products.size(); i++)
+		{
+			String name = products.get(i).getName();
+			int quant = quantity.get(i);
+			float price = (float) (products.get(i).getPrice() * quantity.get(i));
+			builder.append(name + "(" + quant + ") = $" + price + "\n");
+		}
+		
+		return builder.toString();
 	}
 	
 	/**
@@ -65,17 +81,17 @@ public class Cart implements Serializable{
 	 * @param quantity
 	 * @apiNote If the product exist, just sum the quantity. If it doesn't exist, add the product and the quantity
 	 */
-	public void add(Products product, Integer quantity)
+	public void add(Products product)
 	{
 		int posProduct = existProduct(product);
 		if(posProduct == -1)
 		{
 			this.products.add(product);
-			this.quantity.add(quantity);
+			this.quantity.add(1);
 		}
 		else
 		{
-			this.quantity.set(posProduct, this.quantity.get(posProduct) + quantity);
+			this.quantity.set(posProduct, this.quantity.get(posProduct) + 1);
 		}
 	}
 
@@ -97,8 +113,19 @@ public class Cart implements Serializable{
 			else
 			{
 				this.quantity.remove(posProduct);
-				this.products.remove(posProduct);
+				this.products.remove(posProduct); 
 			}
+		}
+	}
+	
+	public void remove()
+	{		
+		while(!quantity.isEmpty() && !products.isEmpty())
+		{
+			int i = 0;
+			this.quantity.remove(i);
+			this.products.remove(i); 
+			i++;
 		}
 	}
 	
@@ -108,7 +135,6 @@ public class Cart implements Serializable{
 	 */
 	public float calculateSubTotal()
 	{
-		float total = 0;
 		
 		if(quantity.size() == products.size())
 		{
@@ -131,7 +157,7 @@ public class Cart implements Serializable{
 	 */
 	public float buy()
 	{
-		float totalPrice = calculateSubTotal(); // falta agregar descuentos, si es que los hay.
+		this.total = calculateSubTotal(); // falta agregar descuentos, si es que los hay.
 		
 		if(quantity.size() == products.size())
 		{
@@ -145,7 +171,7 @@ public class Cart implements Serializable{
 			}
 		}
 		
-		return totalPrice;
+		return this.total;
 	}
 }
 

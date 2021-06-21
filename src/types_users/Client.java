@@ -29,6 +29,7 @@ public class Client extends Users {
 		City = city;
 		Address = address;
 		card = new CreditCard();
+		cart = new Cart();
 	}
 
 	// METHODS
@@ -63,8 +64,8 @@ public class Client extends Users {
 	 * @param quantity
 	 * @apiNote add product to cart
 	 */
-	public void addToCart(Products product, Integer quantity) {
-		cart.add(product, quantity);
+	public void addToCart(Products product) {
+		cart.add(product);
 	}
 
 	/**
@@ -81,25 +82,28 @@ public class Client extends Users {
 	 *          subtract the final price from the balance
 	 * @return
 	 */
-	public StringBuilder buy() {
+	public String buy() {
 		StringBuilder builder = new StringBuilder();
 		float total = cart.calculateSubTotal();
 		Order order;
 
 		if (card.getBalance() == -1) {
 			builder.append("Debe agregar una tarjeta de credito");
+			cart.setTotal(0);
 		} else if (card.getBalance() < total) {
 			builder.append("No tiene saldo suficiente");
+			cart.setTotal(0);
 		} else {
 			order = new Order();
 			order.setEmail(super.getEmail());
 			order.addProducts(cart);
 			total = cart.buy();
-			card.setBalance(card.getBalance() - total);
-			builder.append("Se realizo la compra por: $" + total);
+			card.setBalance(card.getBalance() - total/2);
+			cart.setTotal(0);
+			builder.append("Se realizo la compra por: $" + total/2);
 		}
 
-		return builder;
+		return builder.toString();
 	}
 
 	// GETTERS
