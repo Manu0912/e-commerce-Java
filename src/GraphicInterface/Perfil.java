@@ -22,7 +22,7 @@ public class Perfil extends JFrame implements ActionListener{
 
 	private JPanel panelInfo, panelBtn;
 	private Users user;
-	private JButton btnBack, btnChangeA, btnChangeC, btnChangeM, btnChangeL, btnChangeP, btnAddCard;
+	private JButton btnBack, btnChange5, btnChange4, btnChange3, btnChange2, btnChange1, btnAddCard;
 	private JLabel lName, lLastName, lMail, lAddress, lCity, lCreditCard, lBalance, lInfo, lInfo2; 
 	
 	private Color panelColor = new Color(100, 170, 255);
@@ -97,6 +97,7 @@ public class Perfil extends JFrame implements ActionListener{
 			lBalance = new JLabel("Saldo: $" + client.getCard().getBalance());
 			lBalance.setBounds(10, 250, 400, 30);
 			lBalance.setFont(new Font(null, 1, 20));
+			panelInfo.add(lBalance);
 			
 			lInfo = new JLabel("(Si modifica sus datos debera iniciar");
 			lInfo.setBounds(10, 290, 400, 30);
@@ -111,30 +112,30 @@ public class Perfil extends JFrame implements ActionListener{
 			
 			// BUTTONS
 			
-			btnChangeP = new JButton("Cambiar contraseña");
-			btnChangeP.setBounds(30, 50, 150, 40);
-			btnChangeP.addActionListener(this);
-			panelBtn.add(btnChangeP);
+			btnChange1 = new JButton("Cambiar contraseña");
+			btnChange1.setBounds(30, 50, 150, 40);
+			btnChange1.addActionListener(this);
+			panelBtn.add(btnChange1);
 			
-			btnChangeL = new JButton("Cambiar apellido");
-			btnChangeL.setBounds(200, 50, 150, 40);
-			btnChangeL.addActionListener(this);
-			panelBtn.add(btnChangeL);
+			btnChange2 = new JButton("Cambiar apellido");
+			btnChange2.setBounds(200, 50, 150, 40);
+			btnChange2.addActionListener(this);
+			panelBtn.add(btnChange2);
 			
-			btnChangeM = new JButton("Cambiar email");
-			btnChangeM.setBounds(30, 120, 150, 40);
-			btnChangeM.addActionListener(this);
-			panelBtn.add(btnChangeM);
+			btnChange3 = new JButton("Cambiar email");
+			btnChange3.setBounds(30, 120, 150, 40);
+			btnChange3.addActionListener(this);
+			panelBtn.add(btnChange3);
 			
-			btnChangeC = new JButton("Cambiar ciudad");
-			btnChangeC.setBounds(200, 120, 150, 40);
-			btnChangeC.addActionListener(this);
-			panelBtn.add(btnChangeC);
+			btnChange4 = new JButton("Cambiar ciudad");
+			btnChange4.setBounds(200, 120, 150, 40);
+			btnChange4.addActionListener(this);
+			panelBtn.add(btnChange4);
 			
-			btnChangeA = new JButton("Cambiar direccion");
-			btnChangeA.setBounds(30, 190, 150, 40);
-			btnChangeA.addActionListener(this);
-			panelBtn.add(btnChangeA);
+			btnChange5 = new JButton("Cambiar direccion");
+			btnChange5.setBounds(30, 190, 150, 40);
+			btnChange5.addActionListener(this);
+			panelBtn.add(btnChange5);
 			
 			btnAddCard = new JButton("Agregar tarjeta");
 			btnAddCard.setBounds(200, 190, 150, 40);
@@ -145,7 +146,28 @@ public class Perfil extends JFrame implements ActionListener{
 			btnBack.setBounds(115, 280, 150, 35);
 			btnBack.addActionListener(this);
 			panelBtn.add(btnBack);
-			panelInfo.add(lBalance);
+		}
+		else
+		{
+			lInfo = new JLabel("ADMIN");
+			lInfo.setBounds(100, 300, 400, 50);
+			lInfo.setFont(new Font(null, Font.BOLD, 50));
+			panelInfo.add(lInfo);
+			
+			btnChange1 = new JButton("Agregar producto");
+			btnChange1.setBounds(30, 50, 150, 40);
+			btnChange1.addActionListener(this);
+			panelBtn.add(btnChange1);
+			
+			btnChange2 = new JButton("Eliminar producto");
+			btnChange2.setBounds(200, 50, 150, 40);
+			btnChange2.addActionListener(this);
+			panelBtn.add(btnChange2);
+			
+			btnBack = new JButton("Volver");
+			btnBack.setBounds(115, 280, 150, 35);
+			btnBack.addActionListener(this);
+			panelBtn.add(btnBack);
 		}
 		
 	}
@@ -160,27 +182,27 @@ public class Perfil extends JFrame implements ActionListener{
 			Principal principal = new Principal(user);
 			this.setVisible(false);
 		}
-		else if(e.getSource() == btnChangeP)
+		else if(e.getSource() == btnChange1)
 		{
 			String password = JOptionPane.showInputDialog(this, "Ingrese la nuevo contraseña: "); 
 			changePassword(password);
 		}
-		else if(e.getSource() == btnChangeL)
+		else if(e.getSource() == btnChange2)
 		{
 			String name_lastName = JOptionPane.showInputDialog(this, "Ingrese su nuevo nombre y apellido: "); 
 			changeName_lastName(name_lastName);
 		}
-		else if(e.getSource() == btnChangeA)
+		else if(e.getSource() == btnChange5)
 		{
 			String address = JOptionPane.showInputDialog(this, "Ingrese su nueva direccion: "); 
 			changeAddress(address);
 		}
-		else if(e.getSource() == btnChangeC)
+		else if(e.getSource() == btnChange4)
 		{
 			String city = JOptionPane.showInputDialog(this, "Ingrese la nueva ciudad: "); 
 			changeCity(city);
 		}
-		else if(e.getSource() == btnChangeM)
+		else if(e.getSource() == btnChange3)
 		{
 			String email = JOptionPane.showInputDialog(this, "Ingrese el nuevo email: "); 
 			changeMail(email);

@@ -173,8 +173,15 @@ public class Principal extends JFrame implements ActionListener{
 		}
 		else if(e.getSource() == btnC)
 		{
-			CartInterface cart = new CartInterface(user);
-			this.setVisible(false);
+			if(user instanceof Client)
+			{
+				CartInterface cart = new CartInterface(user);
+				this.setVisible(false);
+			}
+			else
+			{
+				JOptionPane.showMessageDialog(this, "No tienes acceso al carrito porque eres Admin!");
+			}
 		}
 		else 
 		{
@@ -418,7 +425,7 @@ public class Principal extends JFrame implements ActionListener{
 			}
 			else 
 			{
-				JOptionPane.showConfirmDialog(this, "No puede usar esta funcion!");
+				JOptionPane.showMessageDialog(this, "No puede usar esta funcion!");
 			}
 		
 		}
