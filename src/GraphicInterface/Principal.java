@@ -176,7 +176,7 @@ public class Principal extends JFrame implements ActionListener{
 			CartInterface cart = new CartInterface(user);
 			this.setVisible(false);
 		}
-		else
+		else 
 		{
 			addToCart(e);
 		}
@@ -231,6 +231,8 @@ public class Principal extends JFrame implements ActionListener{
 				panel.setBackground(Color.white);
 				panelProdcutos.add(panel);
 				
+				this.product = catalogue.getElement(i);
+				
 				JTextArea txt = new JTextArea(catalogue.getElement(i).toString());
 				txt.setBounds(0,0,200,150);
 				txt.setBorder(null);
@@ -239,6 +241,7 @@ public class Principal extends JFrame implements ActionListener{
 				
 				JButton btnCarrito = new JButton("Agregar al carrito");
 				btnCarrito.setBounds(20, 150, 150, 30);
+				btnCarrito.addActionListener(this);
 				panel.add(btnCarrito);
 				
 				arrayPanel.add(panel);
@@ -263,6 +266,8 @@ public class Principal extends JFrame implements ActionListener{
 				panel.setBackground(Color.white);
 				panelProdcutos.add(panel);
 				
+				this.product = catalogue.getElement(i);
+				
 				JTextArea txt = new JTextArea(catalogue.getElement(i).toString());
 				txt.setBounds(0,0,200,150);
 				txt.setBorder(null);
@@ -271,6 +276,7 @@ public class Principal extends JFrame implements ActionListener{
 				
 				JButton btnCarrito = new JButton("Agregar al carrito");
 				btnCarrito.setBounds(20, 150, 150, 30);
+				btnCarrito.addActionListener(this);
 				panel.add(btnCarrito);
 				
 				arrayPanel.add(panel);
@@ -294,6 +300,8 @@ public class Principal extends JFrame implements ActionListener{
 				panel.setBackground(Color.white);
 				panelProdcutos.add(panel);
 				
+				this.product = catalogue.getElement(i);
+				
 				JTextArea txt = new JTextArea(catalogue.getElement(i).toString());
 				txt.setBounds(0,0,200,150);
 				txt.setBorder(null);
@@ -302,6 +310,7 @@ public class Principal extends JFrame implements ActionListener{
 				
 				JButton btnCarrito = new JButton("Agregar al carrito");
 				btnCarrito.setBounds(20, 150, 150, 30);
+				btnCarrito.addActionListener(this);
 				panel.add(btnCarrito);
 				
 				arrayPanel.add(panel);
@@ -325,6 +334,8 @@ public class Principal extends JFrame implements ActionListener{
 				panel.setBackground(Color.white);
 				panelProdcutos.add(panel);
 				
+				this.product = catalogue.getElement(i);
+				
 				JTextArea txt = new JTextArea(catalogue.getElement(i).toString());
 				txt.setBounds(0,0,200,150);
 				txt.setBorder(null);
@@ -333,6 +344,7 @@ public class Principal extends JFrame implements ActionListener{
 				
 				JButton btnCarrito = new JButton("Agregar al carrito");
 				btnCarrito.setBounds(20, 150, 150, 30);
+				btnCarrito.addActionListener(this);
 				panel.add(btnCarrito);
 				
 				arrayPanel.add(panel);
@@ -375,37 +387,62 @@ public class Principal extends JFrame implements ActionListener{
 	
 	public void addToCart(ActionEvent e)
 	{
-		if(user instanceof Client)
+		try 
 		{
-			Catalogue catalogue = CatalogueUtiles.read();
-			HashMap<Integer, Users> hashMap = UserUtiles.read();
-			Iterator<Entry<Integer, Users>> it = hashMap.entrySet().iterator();
-			Client client;
-			
-			for(int i = 0; i < catalogue.count(); i++)
+			if(user instanceof Client)
 			{
-				if(e.getSource() == arrayPanel.get(i).getComponent(1))
+				Catalogue catalogue = CatalogueUtiles.read();
+				HashMap<Integer, Users> hashMap = UserUtiles.read();
+				Iterator<Entry<Integer, Users>> it = hashMap.entrySet().iterator();
+				Client client;
+				
+				for(int i = 0; i < catalogue.count(); i++)
 				{
-					while(it.hasNext())
+					if(e.getSource() == arrayPanel.get(i).getComponent(1))
 					{
-						Entry<Integer, Users> entry = it.next();
-						if(entry.getKey() == user.getId())
+						JTextArea jta = (JTextArea) arrayPanel.get(i).getComponent(0);
+						
+						while(it.hasNext())
 						{
-							client = (Client) entry.getValue();
-							client.addToCart(catalogue.getElement(i));
-							UserUtiles.write(client);
+							Entry<Integer, Users> entry = it.next();
+							if(entry.getKey() == user.getId())
+							{
+								client = (Client) entry.getValue();
+								Products p = catalogue.getElementByName(getNameProdutc(jta.getText()));
+								client.addToCart(p);
+								UserUtiles.write(client);
+							}
 						}
 					}
 				}
 			}
+			else 
+			{
+				JOptionPane.showConfirmDialog(this, "No puede usar esta funcion!");
+			}
+		
 		}
-		else 
+		catch (IndexOutOfBoundsException iobe) 
 		{
-			JOptionPane.showConfirmDialog(this, "No puede usar esta funcion!");
+
+		}	
+		catch (Exception ex) {
+
 		}
 	}
 
-	
+	public String getNameProdutc(String txtArea)
+	{
+		String name = "";
+		int i = 0;
+		while(txtArea.charAt(i) != ' ')
+		{
+			name += txtArea.charAt(i);
+			i++;
+		}
+		
+		return name;
+	}
 }
 
 
