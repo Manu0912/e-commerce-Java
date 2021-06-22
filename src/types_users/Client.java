@@ -98,9 +98,9 @@ public class Client extends Users {
 			order.setEmail(super.getEmail());
 			order.addProducts(cart);
 			total = cart.buy();
-			card.setBalance(card.getBalance() - total/2);
+			card.setBalance(card.getBalance() - total / 2);
 			cart.setTotal(0);
-			builder.append("Se realizo la compra por: $" + total/2);
+			builder.append("Se realizo la compra por: $" + total / 2);
 		}
 
 		return builder.toString();
@@ -124,6 +124,10 @@ public class Client extends Users {
 		return cart;
 	}
 
+	public Orders getOrders() {
+		return orders;
+	}
+
 	// SETTERS
 
 	public void setCity(String city) {
@@ -141,4 +145,9 @@ public class Client extends Users {
 	public void setCart(Cart cart) {
 		this.cart = cart;
 	}
+
+	public void setOrders(Orders _orders) {
+		orders = _orders;
+	}
+
 }

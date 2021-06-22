@@ -13,112 +13,76 @@ import Products.Products;
 public class CatalogueUtiles {
 
 	private final static String file_products = "products.dat";
-	
-	public static void write(Catalogue catalogue)
-	{
+
+	public static void write(Catalogue catalogue) {
 		FileOutputStream fos;
 		ObjectOutputStream oos = null;
-		try 
-		{
+		try {
 			fos = new FileOutputStream(file_products);
 			oos = new ObjectOutputStream(fos);
-			
-			for(int i = 0; i < catalogue.count(); i++)
-			{
+
+			for (int i = 0; i < catalogue.count(); i++) {
 				oos.writeObject(catalogue.getElement(i));
 			}
-		} 
-		catch (IOException e) 
-		{
+		} catch (IOException e) {
 			e.printStackTrace();
-		}
-		finally 
-		{
-			try 
-			{
+		} finally {
+			try {
 				oos.close();
-			}
-			catch (IOException e)
-			{
+			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
 	}
-	
-	
-	public static void write(Products product)
-	{
+
+	public static void write(Products product) {
 		FileOutputStream fos;
 		ObjectOutputStream oos = null;
 		Catalogue catalogue = CatalogueUtiles.read();
 		catalogue.add(product);
-		
-		try 
-		{
+
+		try {
 			fos = new FileOutputStream(file_products);
 			oos = new ObjectOutputStream(fos);
-			
-			for(int i = 0; i < catalogue.count(); i++)
-			{
+
+			for (int i = 0; i < catalogue.count(); i++) {
 				oos.writeObject(catalogue.getElement(i));
 			}
-		} 
-		catch (IOException e) 
-		{
+		} catch (IOException e) {
 			e.printStackTrace();
-		}
-		finally 
-		{
-			try 
-			{
+		} finally {
+			try {
 				oos.close();
-			}
-			catch (IOException e)
-			{
+			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
 	}
-	
-	
-	public static Catalogue read()
-	{
+
+	public static Catalogue read() {
 		ObjectInputStream ois = null;
 		Catalogue catalogue = new Catalogue();
-		try 
-		{
+		try {
 			ois = new ObjectInputStream(new FileInputStream(file_products));
 			Products product = null;
-			
-			while((product = (Products) ois.readObject()) != null)
-			{
+
+			while ((product = (Products) ois.readObject()) != null) {
 				catalogue.add(product);
 			}
-		} 
-		catch (EOFException e) 
-		{
+		} catch (EOFException e) {
 			System.out.println("Fin del archivo");
-		} 
-		catch (IOException e) 
-		{
+		} catch (IOException e) {
 			e.printStackTrace();
-		} 
-		catch (ClassNotFoundException e)
-		{
+		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
-		}
-		finally 
-		{
-			try 
-			{
+		} finally {
+			try {
 				ois.close();
-			} 
-			catch (IOException e)
-			{
+			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
-		
+
 		return catalogue;
 	}
 }

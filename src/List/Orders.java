@@ -2,6 +2,7 @@ package List;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import Order.Order;
 
@@ -42,17 +43,17 @@ public class Orders {
 	}
 
 	/**
-	 * @param id of type String
+	 * @param uuid of type UUID
 	 * @apiNote get an order
 	 * @return an order
 	 */
-	public Order getOrder(String id) {
+	public Order getOrder(UUID uuid) {
 		int i = 0;
 		boolean check = false;
 		Order gettedOrder = null;
 
 		while (i < orders.size() && check == false) {
-			if (orders.get(i).getId().toString() == id) {
+			if (orders.get(i).getId() == uuid) {
 				gettedOrder = orders.get(i);
 				check = true;
 			}

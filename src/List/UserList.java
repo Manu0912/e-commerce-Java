@@ -12,12 +12,11 @@ public class UserList {
 	public UserList() {
 		listMapUsers = new HashMap<Integer, Users>();
 	}
-	
-	public HashMap<Integer, Users> getHashMap()
-	{
+
+	public HashMap<Integer, Users> getHashMap() {
 		return listMapUsers;
 	}
-	
+
 	/**
 	 * @param date of type Users
 	 * @apiNote add the User to the listMapUsers
@@ -25,13 +24,13 @@ public class UserList {
 	public void UserListAdd(Users date) {
 		listMapUsers.put(date.getId(), date);
 	}
-	
+
 	// GETTERS
-		/**
-		 * @param id of type Integer
-	     * @apiNote check if the user exists,using the name passed by parameter
-		 * @return returns a Users, if it does not find it a null
-		 */
+	/**
+	 * @param id of type Integer
+	 * @apiNote check if the user exists,using the name passed by parameter
+	 * @return returns a Users, if it does not find it a null
+	 */
 	public Users getUser(String name) {
 		int flag = -1;
 		Users us = null;
@@ -45,11 +44,31 @@ public class UserList {
 		}
 		return us;
 	}
-	
+
+	/**
+	 * @param id of type Integer
+	 * @apiNote check if the user exists,using the name passed by parameter
+	 * @return returns a Users, if it does not find it a null
+	 */
+	public Users getUserByEmail(String email) {
+		int flag = -1;
+		Users us = null;
+		Iterator<Entry<Integer, Users>> it = listMapUsers.entrySet().iterator();
+		while (it.hasNext() && flag == -1) {
+			Entry<Integer, Users> entry = it.next();
+			if (entry.getValue().getEmail().equals(email)) {
+				flag = 0;
+				us = entry.getValue();
+			}
+		}
+		return us;
+	}
+
 	/**
 	 * @param name of type String
-     * @apiNote check if the user exists,using the name passed by parameter
-	 * @return returns a Integer, If it finds it, it returns the key, if it does not find it, it returns a -1
+	 * @apiNote check if the user exists,using the name passed by parameter
+	 * @return returns a Integer, If it finds it, it returns the key, if it does not
+	 *         find it, it returns a -1
 	 */
 	public Integer getId(String name) {
 		int flag = -1;
@@ -64,7 +83,7 @@ public class UserList {
 		}
 		return us;
 	}
-	
+
 	/**
 	 * @param id of type Integer
 	 * @apiNote converts the Orders object to a string
@@ -83,7 +102,7 @@ public class UserList {
 		}
 		return retorno.toString();
 	}
-	
+
 	/**
 	 * @param id of type Integer
 	 * @apiNote remove a specific product
@@ -103,31 +122,8 @@ public class UserList {
 		}
 		return us;
 	}
-	
-	public int count()
-	{
+
+	public int count() {
 		return listMapUsers.size();
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

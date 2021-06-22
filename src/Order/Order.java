@@ -10,7 +10,7 @@ import java.util.Map.Entry;
 import Instruments.Cart;
 import Products.Products;
 
-public class Order implements Serializable{
+public class Order implements Serializable {
     private TreeMap<Integer, Products> order;
     private UUID id;
     private String buyDate;
@@ -124,6 +124,10 @@ public class Order implements Serializable{
 
     public UUID getId() {
         return id;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     public String getState() {
