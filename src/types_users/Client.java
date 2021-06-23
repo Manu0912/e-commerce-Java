@@ -30,6 +30,7 @@ public class Client extends Users {
 		Address = address;
 		card = new CreditCard();
 		cart = new Cart();
+		orders = new Orders();
 	}
 
 	// METHODS
@@ -97,6 +98,7 @@ public class Client extends Users {
 			order = new Order();
 			order.setEmail(super.getEmail());
 			order.addProducts(cart);
+			orders.addOrder(order);
 			total = cart.buy();
 			card.setBalance(card.getBalance() - total / 2);
 			cart.setTotal(0);

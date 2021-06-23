@@ -134,7 +134,6 @@ public class CartInterface extends JFrame implements ActionListener{
 		{
 			String message = buy();
 			JOptionPane.showMessageDialog(this, message);
-			cancel();
 			this.setVisible(false);
 			new CartInterface(client);
 		}

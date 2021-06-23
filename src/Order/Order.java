@@ -11,7 +11,7 @@ import Instruments.Cart;
 import Products.Products;
 
 public class Order implements Serializable {
-    private TreeMap<Integer, Products> order;
+    private TreeMap<Products,Integer> order;
     private UUID id;
     private String buyDate;
     private String state;
@@ -23,7 +23,7 @@ public class Order implements Serializable {
         // hashmap donde Products es el producto e int es cuanto pidio del producto en
         // la orden
         // ej: 3 papas lays, 2 hamburguesas
-        order = (TreeMap<Integer, Products>) new TreeMap<Integer, Products>();
+        order = (TreeMap<Products,Integer>) new TreeMap<Products,Integer>();
         id = UUID.randomUUID();
         buyDate = new Date().toString();
         state = "Orden recien recibida";
@@ -43,16 +43,16 @@ public class Order implements Serializable {
         Products object = null;
         boolean check = true;
         String name = "";
-        Iterator<Entry<Integer, Products>> it = order.entrySet().iterator();
+        Iterator<Entry<Products,Integer>> it = order.entrySet().iterator();
         Products obj;
 
         while (it.hasNext() && check) {
-            Entry<Integer, Products> entry = it.next();
-            obj = (Products) entry.getValue();
+            Entry<Products,Integer> entry = it.next();
+            obj = (Products) entry.getKey();
             name = obj.getName();
 
             if (namProduct == name) {
-                object = entry.getValue();
+                object = entry.getKey();
                 check = false;
             }
         }
@@ -66,14 +66,35 @@ public class Order implements Serializable {
      */
     public String toString() {
         StringBuilder string = new StringBuilder();
-        Iterator<Entry<Integer, Products>> it = order.entrySet().iterator();
+        Iterator<Entry<Products,Integer>> it = order.entrySet().iterator();
         while (it.hasNext()) {
-            Entry<Integer, Products> entry = it.next();
+            Entry<Products,Integer> entry = it.next();
             string.append(entry.getKey());
             string.append(entry.getValue());
         }
         return string.toString();
     }
+    
+    /**
+	 * 
+	 * @param product of type Products
+	 * @return the entry if the product exist or null if not
+	 */
+	public Entry<Products,Integer> existProduct(Products product) {
+		Entry<Products,Integer> obj = null;
+		Iterator<Entry<Products,Integer>> it = order.entrySet().iterator();
+		
+		while (it.hasNext()) 
+		{
+            Entry<Products,Integer> entry = it.next();
+            if(entry.getKey().getName().equals(product.getName()))
+            {
+            	obj = entry;
+            }
+        }
+
+		return obj;
+	}
 
     /**
      * @param cart of type Cart
@@ -84,8 +105,17 @@ public class Order implements Serializable {
         ArrayList<Products> products = cart.getProducts();
 
         if (quantity.size() == products.size()) {
-            for (int i = 0; i < quantity.size(); i++) {
-                order.put(quantity.get(i), products.get(i));
+            for (int i = 0; i < quantity.size(); i++) 
+            {
+            	Entry<Products,Integer> entry = existProduct(products.get(i));
+                if(entry == null)
+                {
+                	order.put(products.get(i), quantity.get(i));
+                }
+                else
+                {
+                	order.put(products.get(i), entry.getValue() + quantity.get(i));
+                }
                 total = total + products.get(i).getPrice();
             }
         }
@@ -100,13 +130,13 @@ public class Order implements Serializable {
     public boolean removeProduct(String namProduct) {
         boolean check = false;
         String name = "", className = "";
-        Iterator<Entry<Integer, Products>> it = order.entrySet().iterator();
+        Iterator<Entry<Products, Integer>> it = order.entrySet().iterator();
         Products obj;
 
         while (it.hasNext() && !check) {
-            Entry<Integer, Products> entry = it.next();
+            Entry<Products, Integer> entry = it.next();
 
-            obj = (Products) entry.getValue();
+            obj = (Products) entry.getKey();
             name = obj.getName();
 
             if (namProduct == name) {
@@ -133,6 +163,10 @@ public class Order implements Serializable {
     public String getState() {
         return state;
     }
+    
+    public double getTotal() {
+		return total;
+	}
 
     // SETTERS
     public void setState(String state) {

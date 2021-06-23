@@ -1,12 +1,13 @@
 package List;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 import Order.Order;
 
-public class Orders {
+public class Orders implements Serializable {
 	List<Order> orders;
 
 	public Orders() {
@@ -79,8 +80,19 @@ public class Orders {
 	}
 
 	@Override
-	public String toString() {
-		return "Orders [orders=" + orders + "]";
+	public String toString() 
+	{
+		StringBuilder builder = new StringBuilder();
+		
+		for(int i = 0; i < orders.size(); i++)
+		{
+			String buyDate = orders.get(i).getBuyDate();
+			String state = orders.get(i).getState();
+			double total = orders.get(i).getTotal();
+			builder.append(buyDate + " / " + state + " / " + total + "\n");
+		}
+		
+		return builder.toString();
 	}
 	
 	

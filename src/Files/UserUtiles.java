@@ -105,11 +105,10 @@ public class UserUtiles {
 		} 
 		catch(FileNotFoundException e)
 		{
-			
+			e.printStackTrace();
 		}
 		catch(NoSuchElementException e)
 		{
-			//e.printStackTrace();
 			System.out.println(e.getMessage());
 		}
 		catch (EOFException e) 

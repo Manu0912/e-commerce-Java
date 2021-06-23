@@ -229,7 +229,7 @@ public class Perfil extends JFrame implements ActionListener{
 		}
 		else if(e.getSource() == btnOrders)
 		{
-			
+			JOptionPane.showMessageDialog(this, getOrders());
 		}
 	}
 	
