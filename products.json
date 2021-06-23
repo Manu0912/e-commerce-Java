@@ -1,1 +1,1 @@
-[{"km":0,"price":800000,"name":"Ford","id":2,"isNew":true,"stock":9,"type":"Auto"}]
+[{"rooms":4,"city":"Mar del Plata","price":150000,"name":"Casa","garage":true,"id":3,"stock":1},{"colour":"Verde","size":77,"price":1200,"name":"Remera","id":4,"stock":40,"brand":"Addidas"},{"price":20000,"name":"Cafetera","width":20,"id":1,"stock":76,"voltage":50,"height":20},{"km":0,"price":800000,"name":"Ford","id":2,"isNew":true,"stock":9,"type":"Auto"}]
