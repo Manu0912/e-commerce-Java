@@ -111,4 +111,8 @@ public abstract class Products implements Serializable {
 	public int getQuantity() {
 		return quantity;
 	}
+
+	public void setQuantity(int _quantity) {
+		quantity = _quantity;
+	}
 }

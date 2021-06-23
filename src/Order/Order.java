@@ -107,9 +107,8 @@ public class Order implements Serializable {
         if (quantity.size() == products.size()) {
             for (int i = 0; i < quantity.size(); i++) {
                 product = products.get(i);
-                for (int j = 0; j < quantity.get(i); j++) {
-                    product.addOne();
-                }
+                product.setQuantity(quantity.get(i));
+
                 order.put(i, products.get(i));
                 total = total + (products.get(i).getPrice() * products.get(i).getQuantity());
             }
