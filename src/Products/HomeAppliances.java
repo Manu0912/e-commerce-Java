@@ -10,12 +10,12 @@ public class HomeAppliances extends Products{
 		
 	}
 
-	public HomeAppliances(int id, String name, float price, int stock) {
-		super(id, name, price, stock);
+	public HomeAppliances(String name, double price, int stock) {
+		super( name, price, stock);
 	}
 
-	public HomeAppliances(int id, String name, double price, int stock, int voltage2, double width2, double height2) {
-		super(id, name, price, stock);
+	public HomeAppliances(String name, double price, int stock, int voltage2, double width2, double height2) {
+		super( name, price, stock);
 		this.voltage = voltage2;
 		this.width = width2;
 		this.height = height2;

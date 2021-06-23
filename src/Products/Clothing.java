@@ -10,13 +10,13 @@ public class Clothing extends Products{
 		
 	}
 
-	public Clothing(int id, String name, double price, int stock) {
-		super(id, name, price, stock);
+	public Clothing(String name, double price, int stock) {
+		super( name, price, stock);
 	}
 
 
-	public Clothing(int id, String name, double price, int stock, char size, String colour, String brand) {
-		super(id, name, price, stock);
+	public Clothing(String name, double price, int stock, char size, String colour, String brand) {
+		super( name, price, stock);
 		this.size = size;
 		this.colour = colour;
 		this.brand = brand;

@@ -72,6 +72,7 @@ public class Json {
 			jsonObject.put("name", product.getName());
 			jsonObject.put("price", product.getPrice());
 			jsonObject.put("stock", product.getStock());
+			jsonObject.put("quantity", product.getQuantity());
 			
 			if(product instanceof HomeAppliances)
 			{

@@ -9,12 +9,12 @@ public class Estate extends Products{
 	
 	}
 
-	public Estate(int id, String name, double price, int stock) {
-		super(id, name, price, stock);
+	public Estate(String name, double price, int stock) {
+		super( name, price, stock);
 	}
 
-	public Estate(int id, String name, double price, int stock, int rooms, boolean garage, String city) {
-		super(id, name, price, stock);
+	public Estate(String name, double price, int stock, int rooms, boolean garage, String city) {
+		super( name, price, stock);
 		this.rooms = rooms;
 		this.garage = garage;
 		this.city = city;

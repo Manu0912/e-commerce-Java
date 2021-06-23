@@ -13,8 +13,8 @@ public abstract class Products implements Serializable {
 		this.quantity = 0;
 	}
 
-	public Products(int id, String name, double price, int stock) {
-		this.id = id;
+	public Products(String name, double price, int stock) {
+		this.id = generateRandomId();
 		this.name = name;
 		this.price = price;
 		this.stock = stock;
@@ -102,6 +102,14 @@ public abstract class Products implements Serializable {
 	public void substractStock(int quantity) {
 		if (stock > quantity)
 			this.stock -= quantity;
+	}
+	
+	public int generateRandomId()
+	{
+		float idf = (float) (Math.random() * 10000);
+		int id = (int) idf;
+		
+		return id;
 	}
 
 	public void addOne() {

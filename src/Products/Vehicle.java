@@ -10,12 +10,12 @@ public class Vehicle extends Products{
 		
 	}
 
-	public Vehicle(int id, String name, double price, int stock) {
-		super(id, name, price, stock);
+	public Vehicle(String name, double price, int stock) {
+		super( name, price, stock);
 	}
 
-	public Vehicle(int id, String name, double price, int stock, String type, boolean isNew, double km) {
-		super(id, name, price, stock);
+	public Vehicle(String name, double price, int stock, String type, boolean isNew, double km) {
+		super( name, price, stock);
 		this.type = type;
 		this.isNew = isNew;
 		this.km = km;

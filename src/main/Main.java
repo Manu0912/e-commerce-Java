@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.Map.Entry;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 import Files.CatalogueUtiles;
 import Files.Json;
@@ -15,7 +16,11 @@ import GraphicInterface.Perfil;
 import GraphicInterface.Principal;
 import List.Catalogue;
 import List.UserList;
+import Products.Clothing;
+import Products.Estate;
+import Products.HomeAppliances;
 import Products.Products;
+import Products.Vehicle;
 import types_users.Admin;
 import types_users.Client;
 import types_users.Users;
@@ -29,8 +34,23 @@ public class Main {
 		//Perfil perfil = new Perfil(new Client("Matias", "Morilla", "123", "matias@gmail.com", "Mar del Plata", "Patagones 834"));
 		//Perfil perfil = new Perfil(new Admin("Matias", "Morilla", "123", "matias@gmail.com"));		
 		//CartInterface cart = new CartInterface(new Client("Matias", "Morilla", "123", "matias@gmail.com", "Mar del Plata", "Patagones 834"));
-	
+		
+		
+		
+		
+		Catalogue c = CatalogueUtiles.read();
+		JSONArray jsonArray = new JSONArray();
+		
+		for(int i = 0; i < c.count(); i++)
+		{
+			JSONObject jsonObject = Json.productToJson(c.getElement(i));
+			jsonArray.put(jsonObject);
+		}
+		
+		Json.writeProducts(jsonArray);		
 		
 	}
+
+
 	
 }
