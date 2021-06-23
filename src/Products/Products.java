@@ -2,15 +2,15 @@ package Products;
 
 import java.io.Serializable;
 
-public abstract class Products implements Serializable{
+public abstract class Products implements Serializable {
 	private int id;
 	private String name;
 	private double price;
 	private int stock;
-	
-	public Products()
-	{
-		
+	private int quantity;
+
+	public Products() {
+		this.quantity = 0;
 	}
 
 	public Products(int id, String name, double price, int stock) {
@@ -18,8 +18,9 @@ public abstract class Products implements Serializable{
 		this.name = name;
 		this.price = price;
 		this.stock = stock;
+		this.quantity = 0;
 	}
-	
+
 	// GETTERS
 
 	public int getId() {
@@ -37,7 +38,7 @@ public abstract class Products implements Serializable{
 	public int getStock() {
 		return stock;
 	}
-	
+
 	// SETTERS
 
 	public void setName(String name) {
@@ -58,8 +59,7 @@ public abstract class Products implements Serializable{
 	public String toString() {
 		return getName() + " \nPrecio: " + getPrice() + "\nStock: " + getStock() + "\n";
 	}
-	
-	
+
 	@Override
 	public int hashCode() {
 		return 1;
@@ -91,34 +91,24 @@ public abstract class Products implements Serializable{
 	/**
 	 * @apiNote subtract 1 from the stock
 	 */
-	public void substractStock()
-	{
-		if(stock > 0)
+	public void substractStock() {
+		if (stock > 0)
 			this.stock--;
 	}
-	
+
 	/**
 	 * @apiNote subtract quantity from the stock
 	 */
-	public void substractStock(int quantity)
-	{
-		if(stock > quantity)
+	public void substractStock(int quantity) {
+		if (stock > quantity)
 			this.stock -= quantity;
 	}
+
+	public void addOne() {
+		quantity = quantity + 1;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
