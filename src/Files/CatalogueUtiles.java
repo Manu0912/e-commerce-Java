@@ -7,8 +7,16 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import List.Catalogue;
+import Products.Clothing;
+import Products.Estate;
+import Products.HomeAppliances;
 import Products.Products;
+import Products.Vehicle;
 
 public class CatalogueUtiles {
 
@@ -85,4 +93,6 @@ public class CatalogueUtiles {
 
 		return catalogue;
 	}
+
+	
 }

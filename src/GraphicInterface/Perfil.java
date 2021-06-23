@@ -22,7 +22,7 @@ public class Perfil extends JFrame implements ActionListener{
 
 	private JPanel panelInfo, panelBtn;
 	private Users user;
-	private JButton btnBack, btnChange5, btnChange4, btnChange3, btnChange2, btnChange1, btnAddCard;
+	private JButton btnBack, btnChange5, btnChange4, btnChange3, btnChange2, btnChange1, btnAddCard, btnOrders;
 	private JLabel lName, lLastName, lMail, lAddress, lCity, lCreditCard, lBalance, lInfo, lInfo2; 
 	
 	private Color panelColor = new Color(100, 170, 255);
@@ -142,10 +142,16 @@ public class Perfil extends JFrame implements ActionListener{
 			btnAddCard.addActionListener(this);
 			panelBtn.add(btnAddCard);
 			
+			btnOrders = new JButton("Ver pedidos");
+			btnOrders.setBounds(200, 260, 150, 35);
+			btnOrders.addActionListener(this);
+			panelBtn.add(btnOrders);
+			
 			btnBack = new JButton("Volver");
-			btnBack.setBounds(115, 280, 150, 35);
+			btnBack.setBounds(30, 260, 150, 35);
 			btnBack.addActionListener(this);
 			panelBtn.add(btnBack);
+			
 		}
 		else
 		{
@@ -219,6 +225,10 @@ public class Perfil extends JFrame implements ActionListener{
 			} catch (NumberFormatException nfe) {
 				
 			}
+			
+		}
+		else if(e.getSource() == btnOrders)
+		{
 			
 		}
 	}
@@ -327,7 +337,25 @@ public class Perfil extends JFrame implements ActionListener{
 		}
 	}
 
-	
+	public String getOrders()
+	{
+		HashMap<Integer, Users> hashMap = UserUtiles.read();
+		Iterator<Entry<Integer, Users>> it = hashMap.entrySet().iterator();
+		Client client;
+		String cont = "";
+		
+		while(it.hasNext())
+		{
+			Entry<Integer, Users> entry = it.next();
+			if(entry.getKey() == user.getId())
+			{
+				client = (Client) entry.getValue();
+				cont = client.getOrders().toString();
+			}
+		}
+		
+		return cont;
+	}
 }
 
 
