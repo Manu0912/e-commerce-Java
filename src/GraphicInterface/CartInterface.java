@@ -133,7 +133,7 @@ public class CartInterface extends JFrame implements ActionListener{
 		else
 		{
 			String message = buy();
-			JOptionPane.showMessageDialog(this, message);
+			if(!message.equals("")) JOptionPane.showMessageDialog(this, message);
 			this.setVisible(false);
 			new CartInterface(client);
 		}
@@ -251,8 +251,11 @@ public class CartInterface extends JFrame implements ActionListener{
 			if(entry.getKey() == this.client.getId())
 			{
 				client = (Client) entry.getValue();
-				buy = client.buy();
-				UserUtiles.write(client);
+				if(client.getCart().sizeProducts() != 0)
+				{
+					buy = client.buy();
+					UserUtiles.write(client);
+				}
 			}
 		}
 		
