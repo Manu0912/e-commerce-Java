@@ -1,6 +1,7 @@
 package main;
 
 import Files.CatalogueUtiles;
+import Files.UserUtiles;
 import GraphicInterface.LogIn;
 import List.Catalogue;
 import Products.Clothing;
@@ -8,6 +9,7 @@ import Products.Estate;
 import Products.HomeAppliances;
 import Products.Products;
 import Products.Vehicle;
+import types_users.Admin;
 
 public class Main {
 
@@ -41,12 +43,10 @@ public class Main {
 		// for(int i = 0; i < c.count(); i++) {
 		// System.out.println(c.getElement(i).toString()); }
 
-		/*
-		 * Admin a = new Admin("MatiasAdmin", "Matias Morilla", "123",
-		 * "matias1@gmail.com");
-		 * 
-		 * UserUtiles.write(a);
-		 */
+		Admin a = new Admin("MatiasAdmin", "Matias Morilla", "123", "matias1@gmail.com");
+
+		UserUtiles.write(a);
+
 	}
 
 }
