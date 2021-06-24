@@ -42,7 +42,7 @@ public class Principal extends JFrame implements ActionListener{
 	private Color panelColor = new Color(100, 170, 255);
 	private final static int width = 1000;
 	private final static int height = 600;
-	
+	 
 	public Principal(Users user)
 	{
 		this.setLayout(null);

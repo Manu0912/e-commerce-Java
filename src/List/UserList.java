@@ -52,7 +52,7 @@ public class UserList {
 	 */
 	public Users getUserByEmail(String email) {
 		int flag = -1;
-		Users us = null;
+		Users us = null; 
 		Iterator<Entry<Integer, Users>> it = listMapUsers.entrySet().iterator();
 		while (it.hasNext() && flag == -1) {
 			Entry<Integer, Users> entry = it.next();

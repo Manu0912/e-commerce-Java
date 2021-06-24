@@ -2,6 +2,9 @@ package types_users;
 
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map.Entry;
 
 import Files.CatalogueUtiles;
 import Files.UserUtiles;
@@ -29,58 +32,48 @@ public class Admin extends Users {
      * @apiNote change product state
      */
     // cambiar estado del pedido
-    public void changeOrderState(Order order, String state, Orders orders, UserList ul) {
-        String email = order.getEmail();
-        Client client = (Client) ul.getUserByEmail(email);
+    public void changeOrderState(String email, String state) { 
+    	HashMap<Integer, Users>  hashMap = UserUtiles.read();
+    	Client client = null;
+    	
+    	Iterator<Entry<Integer, Users>> it = hashMap.entrySet().iterator();
+		while (it.hasNext()) {
+			Entry<Integer, Users> entry = it.next();
+			if (entry.getValue().getEmail().equals(email)) {
+				client = (Client) entry.getValue();
+			}
+		}
+    	
+        Orders orders = client.getOrders();
+        Order order = orders.getOrderState();
+        
         orders.modifyOrderState(order.getId().toString(), state);
 
         client.setOrders(orders);
-        UserUtiles.write(ul.getHashMap());
-    }
+        hashMap.put(client.getId(), client);
+        UserUtiles.write(hashMap);
+    } 
 
     /**
-     * @param originalProduct of type Products
-     * @param newProduct      of type Product
-     * @param catalogue       of type Catalogue
-     * @apiNote modify product
-     */
-    // modificar producto
-
-    public void modifyProduct(Products originalProduct, Products newProduct, Catalogue catalogue) {
-        FileOutputStream fos;
-        ObjectOutputStream ous;
-
-        if (originalProduct.getId() == newProduct.getId()) {
-            catalogue.remove(originalProduct);
-            catalogue.add(newProduct);
-        }
-
-        CatalogueUtiles.write(catalogue);
-
-    }
-
-    /**
-     * @param catalogue of type Catalogue
      * @param product   of type Products
      * @apiNote delete product
      */
     // borrar producto
 
-    public void deleteProduct(Catalogue catalogue, Products product) {
+    public void deleteProduct(Products product) {
+    	Catalogue catalogue = CatalogueUtiles.read();
         catalogue.remove(product);
         CatalogueUtiles.write(catalogue);
     }
 
     /**
-     * @param catalogue of type Catalogue
      * @param product   of type Products
      * @apiNote delete product
      */
     // agregar producto
 
-    public void addProduct(Catalogue catalogue, Products product) {
-        catalogue.add(product);
-        CatalogueUtiles.write(catalogue);
+    public void addProduct(Products product) {
+        CatalogueUtiles.write(product);
     }
 
 }

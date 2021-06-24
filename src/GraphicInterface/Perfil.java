@@ -15,6 +15,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import Files.UserUtiles;
+import Products.Clothing;
+import Products.Estate;
+import Products.HomeAppliances;
+import Products.Products;
+import Products.Vehicle;
+import types_users.Admin;
 import types_users.Client;
 import types_users.Users;
 
@@ -170,10 +176,15 @@ public class Perfil extends JFrame implements ActionListener{
 			btnChange2.addActionListener(this);
 			panelBtn.add(btnChange2);
 			
+			btnChange3 = new JButton("Cambiar estado de pedido");
+			btnChange3.setBounds(90, 110, 190, 40);
+			btnChange3.addActionListener(this);
+			panelBtn.add(btnChange3);
+			
 			btnBack = new JButton("Volver");
 			btnBack.setBounds(115, 280, 150, 35);
 			btnBack.addActionListener(this);
-			panelBtn.add(btnBack);
+			panelBtn.add(btnBack); 
 		}
 		
 	}
@@ -188,49 +199,68 @@ public class Perfil extends JFrame implements ActionListener{
 			Principal principal = new Principal(user);
 			this.setVisible(false);
 		}
-		else if(e.getSource() == btnChange1)
+		if(user instanceof Client)
 		{
-			String password = JOptionPane.showInputDialog(this, "Ingrese la nuevo contraseña: "); 
-			changePassword(password);
-		}
-		else if(e.getSource() == btnChange2)
-		{
-			String name_lastName = JOptionPane.showInputDialog(this, "Ingrese su nuevo nombre y apellido: "); 
-			changeName_lastName(name_lastName);
-		}
-		else if(e.getSource() == btnChange5)
-		{
-			String address = JOptionPane.showInputDialog(this, "Ingrese su nueva direccion: "); 
-			changeAddress(address);
-		}
-		else if(e.getSource() == btnChange4)
-		{
-			String city = JOptionPane.showInputDialog(this, "Ingrese la nueva ciudad: "); 
-			changeCity(city);
-		}
-		else if(e.getSource() == btnChange3)
-		{
-			String email = JOptionPane.showInputDialog(this, "Ingrese el nuevo email: "); 
-			changeMail(email);
-		}
-		else if(e.getSource() == btnAddCard)
-		{
-			try {
-				String name = JOptionPane.showInputDialog(this, "Ingrese el nombre de la tarjeta: "); 
-				String number = JOptionPane.showInputDialog(this, "Ingrese el numero: "); 
-				String dueDate = JOptionPane.showInputDialog(this, "Ingrese fecha de vencimiento: (dd/mm/aa)"); 
-				int code = Integer.parseInt(JOptionPane.showInputDialog(this, "Ingrese el codigo de seguridad: ")); 
-				float balance = Float.parseFloat(JOptionPane.showInputDialog(this, "Ingrese el saldo: ")); 
-				addCredirCard(name, number, dueDate, code, balance);	
-			} catch (NumberFormatException nfe) {
+			if(e.getSource() == btnChange1)
+			{
+				String password = JOptionPane.showInputDialog(this, "Ingrese la nuevo contraseña: "); 
+				changePassword(password);
+			}
+			else if(e.getSource() == btnChange2)
+			{
+				String name_lastName = JOptionPane.showInputDialog(this, "Ingrese su nuevo nombre y apellido: "); 
+				changeName_lastName(name_lastName);
+			}
+			else if(e.getSource() == btnChange5)
+			{
+				String address = JOptionPane.showInputDialog(this, "Ingrese su nueva direccion: "); 
+				changeAddress(address);
+			}
+			else if(e.getSource() == btnChange4)
+			{
+				String city = JOptionPane.showInputDialog(this, "Ingrese la nueva ciudad: "); 
+				changeCity(city);
+			}
+			else if(e.getSource() == btnChange3)
+			{
+				String email = JOptionPane.showInputDialog(this, "Ingrese el nuevo email: "); 
+				changeMail(email);
+			}
+			else if(e.getSource() == btnAddCard)
+			{
+				try {
+					String name = JOptionPane.showInputDialog(this, "Ingrese el nombre de la tarjeta: "); 
+					String number = JOptionPane.showInputDialog(this, "Ingrese el numero: "); 
+					String dueDate = JOptionPane.showInputDialog(this, "Ingrese fecha de vencimiento: (dd/mm/aa)"); 
+					int code = Integer.parseInt(JOptionPane.showInputDialog(this, "Ingrese el codigo de seguridad: ")); 
+					float balance = Float.parseFloat(JOptionPane.showInputDialog(this, "Ingrese el saldo: ")); 
+					addCredirCard(name, number, dueDate, code, balance);	
+				} catch (NumberFormatException nfe) {
+					
+				}
 				
 			}
-			
+			else if(e.getSource() == btnOrders)
+			{
+				JOptionPane.showMessageDialog(this, getOrders());
+			}
 		}
-		else if(e.getSource() == btnOrders)
+		else
 		{
-			JOptionPane.showMessageDialog(this, getOrders());
+			if(e.getSource() == btnChange1)
+			{
+				addProduct();
+			}
+			else if(e.getSource() == btnChange2)
+			{
+				
+			}
+			else if(e.getSource() == btnChange3)
+			{
+				
+			}
 		}
+		
 	}
 	
 	public void changePassword(String newPassword)
@@ -355,6 +385,48 @@ public class Perfil extends JFrame implements ActionListener{
 		}
 		
 		return cont;
+	}
+
+	public void addProduct()
+	{
+		Admin admin = (Admin) this.user;
+		Products p = null;
+		String categoria = JOptionPane.showInputDialog(this, "Categoria: ");
+		String name = JOptionPane.showInputDialog(this, "Nombre: ");
+		int stock = Integer.parseInt(JOptionPane.showInputDialog(this, "Stock: "));
+		double price = Double.parseDouble(JOptionPane.showInputDialog(this, "Precio: "));
+		
+		if(categoria.equals("Electrodomestico"))
+		{
+			int voltage = Integer.parseInt(JOptionPane.showInputDialog(this, "Voltage: "));
+			double width = Double.parseDouble(JOptionPane.showInputDialog(this, "Ancho: "));
+			double height = Double.parseDouble(JOptionPane.showInputDialog(this, "Alto: "));
+			p = new HomeAppliances(name, price, stock, voltage, width, height);
+		}
+		else if(categoria.equals("Vehiculo"))
+		{
+			String type = JOptionPane.showInputDialog(this, "Tipo: ");
+			boolean isNew = Boolean.parseBoolean(JOptionPane.showInputDialog(this, "Es nuevo: "));
+			double km = Double.parseDouble(JOptionPane.showInputDialog(this, "Kilometros: "));
+			p = new Vehicle(name, price, stock, type, isNew, km);
+		}
+		else if(categoria.equals("Inmuebles"))
+		{
+			int rooms = Integer.parseInt(JOptionPane.showInputDialog(this, "Habitaciones: "));
+			boolean garage = Boolean.parseBoolean(JOptionPane.showInputDialog(this, "Tiene garage: "));
+			String city = JOptionPane.showInputDialog(this, "Ciudad: ");
+			p = new Estate(name, price, stock, rooms, garage, city);
+		}
+		else if(categoria.equals("Ropa"))
+		{
+			char size = (JOptionPane.showInputDialog(this, "Talle: ").charAt(0));
+			String colour = JOptionPane.showInputDialog(this, "Color: ");
+			String brand = JOptionPane.showInputDialog(this, "Marca: ");
+			p = new Clothing(name, price, stock, size, colour, brand);
+		}
+		
+		admin.addProduct(p);
+		
 	}
 }
 

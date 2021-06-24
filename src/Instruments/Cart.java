@@ -139,18 +139,32 @@ public class Cart implements Serializable {
 	public float buy() {
 		Catalogue catalogue = CatalogueUtiles.read();
 		this.total = calculateSubTotal(); // falta agregar descuentos, si es que los hay.
-
+		boolean flag = true;
+		
 		if (quantity.size() == products.size()) {
-			for (int i = 0; i < products.size(); i++) {
-				if (products.get(i).getStock() > quantity.get(i)) {
-					catalogue.remove(products.get(i));
-					products.get(i).substractStock(quantity.get(i));
-					catalogue.add(products.get(i));
-					CatalogueUtiles.write(catalogue);
-					remove();
-				}
-			}
-		}
+			for(int j = 0; j < products.size(); j++){
+                if(products.get(j).getStock() < quantity.get(j)){
+                    flag = false;
+                }
+            }
+
+            if(flag == true){
+            	for (int i = 0; i < products.size(); i++) {
+                    if (products.get(i).getStock() >= quantity.get(i)) {
+                        products.get(i).substractStock(quantity.get(i));
+                        catalogue.remove(products.get(i));
+                        catalogue.add(products.get(i));
+                        if (products.get(i).getStock() == 0) {
+                            catalogue.remove(products.get(i));
+                        }
+                        
+                        CatalogueUtiles.write(catalogue);
+                    }
+                }
+                remove();
+            }
+            
+        }
 
 		return this.total;
 	}
