@@ -19,6 +19,10 @@ public class UserUtiles {
 	
 	private final static String file_users = "Users.dat";
 	
+	/**
+     * @param hashMap of type HashMap<Integer, Users>
+     * @apiNote open a file and write an object, from a map
+     */
 	public static void write(HashMap<Integer, Users> hashMap)
 	{
 		ObjectOutputStream oos = null;
@@ -50,7 +54,10 @@ public class UserUtiles {
 			}
 		}
 	}
-	
+	/**
+     * @param user of type Users
+     * @apiNote open a file and copy the users object to a map. it copies it to a file
+     */
 	public static void write(Users user)
 	{
 		ObjectOutputStream oos = null;
@@ -86,7 +93,10 @@ public class UserUtiles {
 		}
 	}
 	
-	
+	/**
+     * @apiNote open a file, and copy all Users objects to a map, and return it
+     * @return HashMap<Integer, Users>
+     */
 	public static HashMap<Integer, Users> read()
 	{
 		HashMap<Integer, Users> hashMap = new HashMap<Integer, Users>();

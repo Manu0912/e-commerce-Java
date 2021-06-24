@@ -21,7 +21,10 @@ import Products.Vehicle;
 public class CatalogueUtiles {
 
 	private final static String file_products = "products.dat";
-
+	/**
+     * @param catalogue of type Catalogue
+     * @apiNote open the file, and copy a catalog object from it.
+     */
 	public static void write(Catalogue catalogue) {
 		FileOutputStream fos;
 		ObjectOutputStream oos = null;
@@ -42,7 +45,10 @@ public class CatalogueUtiles {
 			}
 		}
 	}
-
+	/**
+     * @param product of type Products
+     * @apiNote open the file, and copy a Products object from it.
+     */
 	public static void write(Products product) {
 		FileOutputStream fos;
 		ObjectOutputStream oos = null;
@@ -66,7 +72,11 @@ public class CatalogueUtiles {
 			}
 		}
 	}
-
+	/**
+     * @param product of type Products
+     * @apiNote open the file, and read a catalog object from it.
+     * @return returns a catalog object
+     */
 	public static Catalogue read() {
 		ObjectInputStream ois = null;
 		Catalogue catalogue = new Catalogue();

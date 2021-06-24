@@ -92,7 +92,6 @@ public class Vehicle extends Products{
 		{
 			total = total * 0.9;
 		}
-		
 		return total;
 	}
 	

@@ -24,6 +24,10 @@ public class Json {
 	private final static String productsFile = "products.json";
 	private final static String usersFile = "users.json";
 
+	/**
+     * @param lista of type JSONArray
+     * @apiNote open the file,open the json file and copy a list of json array products, in this
+     */
 	public static void writeProducts(JSONArray lista) {
 		try {
 			FileWriter file = new FileWriter(productsFile);
@@ -34,7 +38,10 @@ public class Json {
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+     * @param objeto of type JSONObject
+     * @apiNote open the json file and copy the json objects products, in this
+     */
 	public static void writeProducts(JSONObject objeto) {
 		try {
 			FileWriter file = new FileWriter(productsFile);
@@ -45,7 +52,10 @@ public class Json {
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+     * @param lista of type JSONArray
+     * @apiNote open the file, and copy a json array users from it.
+     */
 	public static void writeUsers(JSONArray lista) {
 		try {
 			FileWriter file = new FileWriter(usersFile);
@@ -56,7 +66,10 @@ public class Json {
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+     * @param objeto of type JSONObject
+     * @apiNote open the file, and copy a json object users from it.
+     */
 	public static void writeUsers(JSONObject objeto) {
 		try {
 			FileWriter file = new FileWriter(usersFile);
@@ -67,7 +80,11 @@ public class Json {
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+     * @param user of type Users
+     * @apiNote transfer user data to JSONobject
+     * @return returns a JSONObject of users
+     */
 	public static JSONObject UsertoJson(Users user) {
 		JSONObject jsonObject = new JSONObject();
 		try {
@@ -121,7 +138,11 @@ public class Json {
 		}
 		return jsonObject;
 	}
-		
+	/**
+     * @param product of type Products
+     * @apiNote open the file, and read a catalog object from it.
+     * @return returns a catalog object
+     */
 	public static JSONObject productToJson(Products product)
 	{
 		JSONObject jsonObject = new JSONObject();
