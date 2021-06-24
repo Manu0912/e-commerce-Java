@@ -47,11 +47,10 @@ public class Admin extends Users {
         Orders orders = client.getOrders();
         Order order = orders.getOrderState();
         
-        System.out.println("ds");
         orders.modifyOrderState(order.getId().toString(), state);
         client.setOrders(orders);
-        hashMap.put(client.getId(), client);
-        UserUtiles.write(hashMap);
+        System.out.println(client.getOrders().toString());
+        UserUtiles.write(client);
     } 
 
     /**

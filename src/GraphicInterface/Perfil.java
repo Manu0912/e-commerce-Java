@@ -480,7 +480,8 @@ public class Perfil extends JFrame implements ActionListener{
 	
 		Admin admin = (Admin) this.user;
 		String email = JOptionPane.showInputDialog(this, "Ingrese el mail del usuario: ");
-		admin.changeOrderState(email, "Finalizado");		
+		String state = JOptionPane.showInputDialog(this, "Ingrese el nuevo estado: ");
+		admin.changeOrderState(email, state);		
 	}
 }
 

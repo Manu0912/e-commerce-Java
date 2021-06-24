@@ -75,10 +75,11 @@ public class Orders implements Serializable {
 		boolean check = false;
 
 		while (i < orders.size() && check == false) {
-			if (orders.get(i).getId().toString() == id) {
+			if (orders.get(i).getId().toString().equals(id)) {
 				orders.get(i).setState(state);
 				check = true;
 			}
+			i++;
 		}
 	}
 
