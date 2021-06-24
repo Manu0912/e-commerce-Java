@@ -99,7 +99,7 @@ public class Orders implements Serializable {
 	 * 
 	 * @return the order that have state 1
 	 */
-	public Order getOrderState()
+	public Order getOrderState() 
 	{
 		Order order = null;
 		

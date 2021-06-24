@@ -253,11 +253,11 @@ public class Perfil extends JFrame implements ActionListener{
 			}
 			else if(e.getSource() == btnChange2)
 			{
-				
+				removeProduct();
 			}
 			else if(e.getSource() == btnChange3)
 			{
-				
+				changeStateOrders();
 			}
 		}
 		
@@ -427,6 +427,21 @@ public class Perfil extends JFrame implements ActionListener{
 		
 		admin.addProduct(p);
 		
+	}
+
+	public void removeProduct()
+	{
+		Admin admin = (Admin) this.user;
+		String name = JOptionPane.showInputDialog(this, "Nombre del producto: ");
+		admin.deleteProduct(name);
+	}
+	
+	public void changeStateOrders()
+	{
+	
+		Admin admin = (Admin) this.user;
+		String email = JOptionPane.showInputDialog(this, "Ingrese el mail del usuario: ");
+		admin.changeOrderState(email, "Finalizado");		
 	}
 }
 

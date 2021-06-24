@@ -47,8 +47,8 @@ public class Admin extends Users {
         Orders orders = client.getOrders();
         Order order = orders.getOrderState();
         
+        System.out.println("ds");
         orders.modifyOrderState(order.getId().toString(), state);
-
         client.setOrders(orders);
         hashMap.put(client.getId(), client);
         UserUtiles.write(hashMap);
@@ -60,8 +60,10 @@ public class Admin extends Users {
      */
     // borrar producto
 
-    public void deleteProduct(Products product) {
+    public void deleteProduct(String name) {
+ 
     	Catalogue catalogue = CatalogueUtiles.read();
+    	Products product = catalogue.getElementByName(name);
         catalogue.remove(product);
         CatalogueUtiles.write(catalogue);
     }
