@@ -145,8 +145,10 @@ public class Cart implements Serializable {
 
 		if (quantity.size() == products.size()) {
 			for (int i = 0; i < products.size(); i++) {
-				total += products.get(i).getPrice() * quantity.get(i);
+				total += (float) (products.get(i).getPrice() * quantity.get(i));
+				System.out.println(products.get(i).getName() + "*" + quantity.get(i));
 			}
+			System.out.println(total);
 		} else {
 			total = -1;
 		}
@@ -160,11 +162,15 @@ public class Cart implements Serializable {
 	 */
 	public float buy() {
 		Catalogue catalogue = CatalogueUtiles.read();
-		this.total = calculateSubTotal(); // falta agregar descuentos, si es que los hay.
+		this.total = calculateSubTotal() / 2;
 		boolean flag = true;
-		
+		ArrayList<Float> totales = new ArrayList<Float>();
+		System.out.println(total);
 		if (quantity.size() == products.size()) {
 			for(int j = 0; j < products.size(); j++){
+				double totalProducts = products.get(j).getPrice() * quantity.get(j);
+				Float totalDiscount = (float) products.get(j).generateDiscountQuantity(totalProducts, quantity.get(j));
+				totales.add(totalDiscount);
                 if(products.get(j).getStock() < quantity.get(j)){
                     flag = false;
                 }
@@ -184,9 +190,14 @@ public class Cart implements Serializable {
                     }
                 }
                 remove();
-            }
-            
+            }       
         }
+		
+		total = 0;
+		for(int i = 0; i < totales.size(); i++)
+		{
+			total += totales.get(i);
+		}
 
 		return this.total;
 	}

@@ -85,6 +85,18 @@ public class Clothing extends Products{
 			return false;
 		return true;
 	}
+
+	@Override
+	public double generateDiscountQuantity(double total, int quantity) {
+		
+		if(quantity == 3)
+		{
+			total = total / 2;
+		}
+			
+		return total;
+	}
+
 	
 	
 }

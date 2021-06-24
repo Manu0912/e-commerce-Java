@@ -79,6 +79,17 @@ public class HomeAppliances extends Products{
 		return true;
 	}
 
+	@Override
+	public double generateDiscountQuantity(double total, int quantity) {
+		
+		if(quantity == 2)
+		{
+			total = total * 0.8;
+		}
+		
+		return total;
+	}
+
 	
 	
 	

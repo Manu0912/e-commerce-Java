@@ -100,9 +100,9 @@ public class Client extends Users {
 			order.addProducts(cart);
 			orders.addOrder(order);
 			total = cart.buy();
-			card.setBalance(card.getBalance() - total / 2);
+			card.setBalance(card.getBalance() - total);
 			cart.setTotal(0);
-			builder.append("Se realizo la compra por: $" + total / 2);
+			builder.append("Se realizo la compra por: $" + total);
 		}
 
 		return builder.toString();

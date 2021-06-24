@@ -2,7 +2,9 @@ package Products;
 
 import java.io.Serializable;
 
-public abstract class Products implements Serializable {
+import Interface.IDiscount;
+
+public abstract class Products implements Serializable, IDiscount {
 	private int id;
 	private String name;
 	private double price;
