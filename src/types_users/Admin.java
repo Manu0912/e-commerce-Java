@@ -65,7 +65,7 @@ public class Admin extends Users {
     	Catalogue catalogue = CatalogueUtiles.read();
     	Products product = catalogue.getElementByName(name);
         catalogue.remove(product);
-        CatalogueUtiles.write(catalogue);
+        CatalogueUtiles.write(catalogue); 
     }
 
     /**

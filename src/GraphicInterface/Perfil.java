@@ -14,6 +14,9 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import Exceptions.AddProductException;
+import Exceptions.CreditCardException;
+import Exceptions.RemoveProductException;
 import Files.UserUtiles;
 import Products.Clothing;
 import Products.Estate;
@@ -35,7 +38,7 @@ public class Perfil extends JFrame implements ActionListener{
 	private final static int width = 1000;
 	private final static int height = 600;
 	
-	public Perfil(Users user)
+	public Perfil(Users user) 
 	{
 		
 		this.setLayout(null);
@@ -229,14 +232,9 @@ public class Perfil extends JFrame implements ActionListener{
 			else if(e.getSource() == btnAddCard)
 			{
 				try {
-					String name = JOptionPane.showInputDialog(this, "Ingrese el nombre de la tarjeta: "); 
-					String number = JOptionPane.showInputDialog(this, "Ingrese el numero: "); 
-					String dueDate = JOptionPane.showInputDialog(this, "Ingrese fecha de vencimiento: (dd/mm/aa)"); 
-					int code = Integer.parseInt(JOptionPane.showInputDialog(this, "Ingrese el codigo de seguridad: ")); 
-					float balance = Float.parseFloat(JOptionPane.showInputDialog(this, "Ingrese el saldo: ")); 
-					addCredirCard(name, number, dueDate, code, balance);	
-				} catch (NumberFormatException nfe) {
-					
+					addCredirCard();
+				} catch (CreditCardException e1) {
+					JOptionPane.showMessageDialog(this, e1.getMessage()); 
 				}
 				
 			}
@@ -249,11 +247,19 @@ public class Perfil extends JFrame implements ActionListener{
 		{
 			if(e.getSource() == btnChange1)
 			{
-				addProduct();
+				try {
+					addProduct();
+				} catch (AddProductException e1) {
+					JOptionPane.showMessageDialog(this, e1.getMessage()); 
+				}
 			}
 			else if(e.getSource() == btnChange2)
 			{
-				removeProduct();
+				try {
+					removeProduct();
+				} catch (RemoveProductException e1) {
+					JOptionPane.showMessageDialog(this, e1.getMessage()); 
+				}
 			}
 			else if(e.getSource() == btnChange3)
 			{
@@ -349,22 +355,39 @@ public class Perfil extends JFrame implements ActionListener{
 		}
 	}
 	
-	public void addCredirCard(String name, String number, String dueDate, int segurityCode, float balance)
+	public void addCredirCard()throws CreditCardException
 	{
-		HashMap<Integer, Users> hashMap = UserUtiles.read();
-		Iterator<Entry<Integer, Users>> it = hashMap.entrySet().iterator();
-		Client client;
-		
-		while(it.hasNext())
+		try 
 		{
-			Entry<Integer, Users> entry = it.next();
-			if(entry.getKey() == user.getId())
+			String name = JOptionPane.showInputDialog(this, "Ingrese el nombre de la tarjeta: ");
+			String number = JOptionPane.showInputDialog(this, "Ingrese el numero: ");
+			if(number.length() != 16) throw new CreditCardException("La tarjeta de credito debe tener 16 digitos");			
+			
+			String dueDate = JOptionPane.showInputDialog(this, "Ingrese fecha de vencimiento: (dd/mm/aa)");
+			int code = Integer.parseInt(JOptionPane.showInputDialog(this, "Ingrese el codigo de seguridad: "));
+			float balance = Float.parseFloat(JOptionPane.showInputDialog(this, "Ingrese el saldo: "));
+
+			HashMap<Integer, Users> hashMap = UserUtiles.read();
+			Iterator<Entry<Integer, Users>> it = hashMap.entrySet().iterator();
+			Client client;
+
+			while (it.hasNext()) 
 			{
-				client = (Client) entry.getValue();
-				client.enterCard(name, number, dueDate, segurityCode, balance);
-				UserUtiles.write(client);
+				Entry<Integer, Users> entry = it.next();
+				if (entry.getKey() == user.getId()) 
+				{
+					client = (Client) entry.getValue();
+					client.enterCard(name, number, dueDate, code, balance);
+					UserUtiles.write(client);
+				}
 			}
+
+		} catch (NumberFormatException nfe) {
+
+		} catch (NullPointerException npe) {
+			JOptionPane.showMessageDialog(this, "Debe completar todos los campos");
 		}
+
 	}
 
 	public String getOrders()
@@ -387,53 +410,69 @@ public class Perfil extends JFrame implements ActionListener{
 		return cont;
 	}
 
-	public void addProduct()
+	public void addProduct()throws AddProductException
 	{
 		Admin admin = (Admin) this.user;
 		Products p = null;
-		String categoria = JOptionPane.showInputDialog(this, "Categoria: ");
-		String name = JOptionPane.showInputDialog(this, "Nombre: ");
-		int stock = Integer.parseInt(JOptionPane.showInputDialog(this, "Stock: "));
-		double price = Double.parseDouble(JOptionPane.showInputDialog(this, "Precio: "));
 		
-		if(categoria.equals("Electrodomestico"))
-		{
-			int voltage = Integer.parseInt(JOptionPane.showInputDialog(this, "Voltage: "));
-			double width = Double.parseDouble(JOptionPane.showInputDialog(this, "Ancho: "));
-			double height = Double.parseDouble(JOptionPane.showInputDialog(this, "Alto: "));
-			p = new HomeAppliances(name, price, stock, voltage, width, height);
+		try {
+			String categoria = JOptionPane.showInputDialog(this, "Categoria: ");
+			String name = JOptionPane.showInputDialog(this, "Nombre: ");
+			int stock = Integer.parseInt(JOptionPane.showInputDialog(this, "Stock: "));
+			double price = Double.parseDouble(JOptionPane.showInputDialog(this, "Precio: "));
+			
+			if(categoria.equals("Electrodomestico"))
+			{
+				int voltage = Integer.parseInt(JOptionPane.showInputDialog(this, "Voltage: "));
+				double width = Double.parseDouble(JOptionPane.showInputDialog(this, "Ancho: "));
+				double height = Double.parseDouble(JOptionPane.showInputDialog(this, "Alto: "));
+				p = new HomeAppliances(name, price, stock, voltage, width, height);
+				admin.addProduct(p);
+			}
+			else if(categoria.equals("Vehiculo"))
+			{
+				String type = JOptionPane.showInputDialog(this, "Tipo: ");
+				boolean isNew = Boolean.parseBoolean(JOptionPane.showInputDialog(this, "Es nuevo: "));
+				double km = Double.parseDouble(JOptionPane.showInputDialog(this, "Kilometros: "));
+				p = new Vehicle(name, price, stock, type, isNew, km);
+				admin.addProduct(p);
+			}
+			else if(categoria.equals("Inmuebles"))
+			{
+				int rooms = Integer.parseInt(JOptionPane.showInputDialog(this, "Habitaciones: "));
+				boolean garage = Boolean.parseBoolean(JOptionPane.showInputDialog(this, "Tiene garage: "));
+				String city = JOptionPane.showInputDialog(this, "Ciudad: ");
+				p = new Estate(name, price, stock, rooms, garage, city);
+				admin.addProduct(p);
+			}
+			else if(categoria.equals("Ropa"))
+			{
+				char size = (JOptionPane.showInputDialog(this, "Talle: ").charAt(0));
+				String colour = JOptionPane.showInputDialog(this, "Color: ");
+				String brand = JOptionPane.showInputDialog(this, "Marca: ");
+				p = new Clothing(name, price, stock, size, colour, brand);
+				admin.addProduct(p);
+			}
+			else
+			{
+				throw new AddProductException("La categoria del producto no existe!");
+			}
+			
+		} catch (NumberFormatException e) {
+
 		}
-		else if(categoria.equals("Vehiculo"))
-		{
-			String type = JOptionPane.showInputDialog(this, "Tipo: ");
-			boolean isNew = Boolean.parseBoolean(JOptionPane.showInputDialog(this, "Es nuevo: "));
-			double km = Double.parseDouble(JOptionPane.showInputDialog(this, "Kilometros: "));
-			p = new Vehicle(name, price, stock, type, isNew, km);
-		}
-		else if(categoria.equals("Inmuebles"))
-		{
-			int rooms = Integer.parseInt(JOptionPane.showInputDialog(this, "Habitaciones: "));
-			boolean garage = Boolean.parseBoolean(JOptionPane.showInputDialog(this, "Tiene garage: "));
-			String city = JOptionPane.showInputDialog(this, "Ciudad: ");
-			p = new Estate(name, price, stock, rooms, garage, city);
-		}
-		else if(categoria.equals("Ropa"))
-		{
-			char size = (JOptionPane.showInputDialog(this, "Talle: ").charAt(0));
-			String colour = JOptionPane.showInputDialog(this, "Color: ");
-			String brand = JOptionPane.showInputDialog(this, "Marca: ");
-			p = new Clothing(name, price, stock, size, colour, brand);
-		}
-		
-		admin.addProduct(p);
-		
+				
 	}
 
-	public void removeProduct()
+	public void removeProduct()throws RemoveProductException
 	{
-		Admin admin = (Admin) this.user;
-		String name = JOptionPane.showInputDialog(this, "Nombre del producto: ");
-		admin.deleteProduct(name);
+		try {
+			Admin admin = (Admin) this.user;
+			String name = JOptionPane.showInputDialog(this, "Nombre del producto: ");
+			admin.deleteProduct(name);
+		} catch (NullPointerException npe) {
+			throw new RemoveProductException("El nombre del producto es incorrecto o no existe!");
+		}
 	}
 	
 	public void changeStateOrders()

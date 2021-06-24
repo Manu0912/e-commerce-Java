@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import Exceptions.LoginException;
 import Files.UserUtiles;
 import libreria.TextPrompt;
 import types_users.Users;
@@ -27,7 +28,7 @@ public class LogIn extends JFrame implements ActionListener{
 	private final static int width = 600;
 	private final static int height = 600;
 	
-	public LogIn()
+	public LogIn() 
 	{
 		this.setLayout(null);
 		this.setTitle("Inicio");
@@ -75,19 +76,20 @@ public class LogIn extends JFrame implements ActionListener{
 		}
 		else if(e.getSource() == buttonLogin)
 		{
-			if(validateUser())
-			{
-				Principal principal = new Principal(user);
-				this.setVisible(false);
+			try {
+				if(validateUser())
+				{
+					Principal principal = new Principal(user);
+					this.setVisible(false);
+				}
+			} catch (LoginException e1) {
+				JOptionPane.showMessageDialog(this, e1.getMessage());
 			}
-			else
-			{
-				JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrecta, intente de nuevo!");
-			}
+
 		}
 	}
 	
-	public boolean validateUser()
+	public boolean validateUser() throws LoginException
 	{
 		boolean valid = false;
 		HashMap<Integer, Users> hashMap = UserUtiles.read();
@@ -101,6 +103,11 @@ public class LogIn extends JFrame implements ActionListener{
 				user = entry.getValue();
 				valid = true;
 			}
+		}
+		
+		if(valid == false)
+		{
+			throw new LoginException("Usuario o contraseña incorrecta!");
 		}
 		
 		return valid;

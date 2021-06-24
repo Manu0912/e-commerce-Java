@@ -55,9 +55,9 @@ public class Main {
 			System.out.println(c.getElement(i).toString());
 		}*/
 		
-		Admin a = new Admin("MatiasAdmin", "Matias Morilla", "123", "matias1@gmail.com");
+		/*Admin a = new Admin("MatiasAdmin", "Matias Morilla", "123", "matias1@gmail.com");
 		
-		UserUtiles.write(a);
+		UserUtiles.write(a);*/
 	}
 
 
