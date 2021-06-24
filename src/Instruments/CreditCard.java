@@ -25,7 +25,33 @@ public class CreditCard implements Serializable{
 	}
 	
 	// GETTERS
+	public String getName() {
+		return name;
+	}
 
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Date getDueDate() {
+		return dueDate;
+	}
+
+	public void setDueDate(Date dueDate) {
+		this.dueDate = dueDate;
+	}
+
+	public int getSegurityCode() {
+		return segurityCode;
+	}
+
+	public void setSegurityCode(int segurityCode) {
+		this.segurityCode = segurityCode;
+	}
+
+	public void setNumber(String number) {
+		this.number = number;
+	}
 	/**
 	 * 
 	 * @return The formatted credit card number

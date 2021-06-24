@@ -14,6 +14,9 @@ public class Orders implements Serializable {
 		orders = new ArrayList<Order>();
 	}
 
+	public int getSize() {
+		return orders.size();
+	}
 	/**
 	 * @param id of type Integer
 	 * @apiNote remove an order

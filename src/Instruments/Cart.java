@@ -19,7 +19,29 @@ public class Cart implements Serializable {
 	}
 
 	// GETTERS
+	public int sizeInteger() {
+		return quantity.size();
+	}
 
+	public int sizeProducts() {
+		return products.size();
+	}
+
+	public int sizeIntegerPos(int pos) {
+		int retu = -1;
+		if (quantity.size() > pos) {
+			retu = quantity.get(pos);
+		}
+		return retu;
+	}
+
+	public int sizeProductsPos(int pos) {
+		int retu = -1;
+		if (products.size() > pos) {
+			products.get(pos);
+		}
+		return retu;
+	}
 	public ArrayList<Integer> getQuantity() {
 		return quantity;
 	}
