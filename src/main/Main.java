@@ -1,8 +1,19 @@
 package main;
 
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map.Entry;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import Files.CatalogueUtiles;
+import Files.Json;
+import Files.UserUtiles;
 // import Files.CatalogueUtiles;
 // import Files.UserUtiles;
 import GraphicInterface.LogIn;
+import List.Catalogue;
 // import List.Catalogue;
 // import Products.Clothing;
 // import Products.Estate;
@@ -10,6 +21,8 @@ import GraphicInterface.LogIn;
 // import Products.Products;
 // import Products.Vehicle;
 // import types_users.Admin;
+import types_users.Admin;
+import types_users.Users;
 
 public class Main {
 
@@ -38,16 +51,27 @@ public class Main {
 
 		// CatalogueUtiles.write(c);
 
-		// Catalogue c = CatalogueUtiles.read();
+		/*HashMap<Integer, Users> hm = UserUtiles.read();
+		JSONArray jsonArray = new JSONArray();
+		
+		Iterator<Entry<Integer, Users>> it = hm.entrySet().iterator();
+		while(it.hasNext()) 
+		{
+			Entry<Integer, Users> entry = it.next();
+			JSONObject jsonObject = Json.UsertoJson(entry.getValue());
+			jsonArray.put(jsonObject);
+		}
+		
+		
+		Json.writeUsers(jsonArray);*/
 
-		// for(int i = 0; i < c.count(); i++) {
-		// System.out.println(c.getElement(i).toString()); }
+		/*Admin a = new Admin("MatiasAdmin", "Matias Morilla", "123", "matias1@gmail.com");
 
-		// Admin a = new Admin("MatiasAdmin", "Matias Morilla", "123",
-		// "matias1@gmail.com");
-
-		// UserUtiles.write(a);
+		UserUtiles.write(a);*/
 
 	}
 
 }
+
+
+

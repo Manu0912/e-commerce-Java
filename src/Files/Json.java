@@ -120,16 +120,20 @@ public class Json {
 				}
 				cart.put("quantity", quantity);
 				JSONArray products = new JSONArray();
+				i = 0;
 				while (cartclass.sizeProducts() > i) 
 				{
 					products.put(cartclass.getProducts());
+					i++;
 				}
 				cart.put("prducts",products);
 				cart.put("total", cartclass.getTotal());
 				jsonObject.put("cart", cart);
 				Orders order = ((Client) user).getOrders();
+				i = 0;
 				while (order.getSize() > i) {
 					array.put(order);
+					i++;
 				}
 				jsonObject.put("Orders",array);
 			}

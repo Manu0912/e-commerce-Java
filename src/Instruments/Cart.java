@@ -146,7 +146,6 @@ public class Cart implements Serializable {
 		if (quantity.size() == products.size()) {
 			for (int i = 0; i < products.size(); i++) {
 				total += (float) (products.get(i).getPrice() * quantity.get(i));
-				System.out.println(products.get(i).getName() + "*" + quantity.get(i));
 			}
 			System.out.println(total);
 		} else {
