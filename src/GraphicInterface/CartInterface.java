@@ -29,7 +29,7 @@ public class CartInterface extends JFrame implements ActionListener{
 	private JLabel labelTxt, labelTotal;
 	private JTextArea txtArea;
 	private Client client;
-	
+	 
 	
 	private Color panelColor = new Color(100, 170, 255);
 	private final static int width = 1000;

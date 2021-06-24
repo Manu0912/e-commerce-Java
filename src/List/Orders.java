@@ -95,5 +95,23 @@ public class Orders implements Serializable {
 		return builder.toString();
 	}
 	
+	/**
+	 * 
+	 * @return the order that have state 1
+	 */
+	public Order getOrderState()
+	{
+		Order order = null;
+		
+		for(int i = 0; i < orders.size(); i++)
+		{
+			if(orders.get(i).getState().equals("Orden recien recibida"))
+			{
+				order = orders.get(i);
+			}
+		}
+		
+		return order;
+	}
 	
 }

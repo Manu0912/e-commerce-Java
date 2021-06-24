@@ -93,15 +93,27 @@ public abstract class Products implements Serializable {
 	 */
 	public void substractStock() {
 		if (stock > 0)
+		{
 			this.stock--;
+		}
+		else if(stock == 1)
+		{
+			this.stock--;
+		}
 	}
 
 	/**
 	 * @apiNote subtract quantity from the stock
 	 */
 	public void substractStock(int quantity) {
-		if (stock > quantity)
+		if (stock >= quantity)
+		{
 			this.stock -= quantity;
+		}
+		else if(stock == 1)
+		{
+			this.stock--;
+		}
 	}
 	
 	public int generateRandomId()

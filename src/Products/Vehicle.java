@@ -6,7 +6,7 @@ public class Vehicle extends Products{
 	private double km;
 	
 	public Vehicle()
-	{
+	{ 
 		
 	}
 

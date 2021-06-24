@@ -5,7 +5,6 @@ import java.util.Iterator;
 import java.util.Map.Entry;
 
 import org.json.JSONArray;
-import org.json.JSONObject;
 
 import Files.CatalogueUtiles;
 import Files.Json;
@@ -35,20 +34,30 @@ public class Main {
 		//Perfil perfil = new Perfil(new Admin("Matias", "Morilla", "123", "matias@gmail.com"));		
 		//CartInterface cart = new CartInterface(new Client("Matias", "Morilla", "123", "matias@gmail.com", "Mar del Plata", "Patagones 834"));
 		
+		/*Products p1 = new HomeAppliances("Cafetera", 20000, 40, 60, 20, 20);
+		Products p2 = new Vehicle("Ford", 800000d, 10, "Auto", true, 0);
+		Products p3 = new Clothing("Remera", 1200, 80, 'M', "Azul", "Addidas");
+		Products p4 = new Estate("Casa", 1000000, 1, 4, true, "Mar del Plata");
 		
+		Catalogue c = new Catalogue();
 		
+		c.add(p1);
+		c.add(p2);
+		c.add(p3);
+		c.add(p4);
+		
+		CatalogueUtiles.write(c);
 		
 		Catalogue c = CatalogueUtiles.read();
-		JSONArray jsonArray = new JSONArray();
 		
 		for(int i = 0; i < c.count(); i++)
 		{
-			JSONObject jsonObject = Json.productToJson(c.getElement(i));
-			jsonArray.put(jsonObject);
-		}
+			System.out.println(c.getElement(i).toString());
+		}*/
 		
-		Json.writeProducts(jsonArray);		
+		/*Admin a = new Admin("MatiasAdmin", "Matias Morilla", "123", "matias1@gmail.com");
 		
+		UserUtiles.write(a);*/
 	}
 
 

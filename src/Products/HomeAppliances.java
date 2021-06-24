@@ -7,7 +7,7 @@ public class HomeAppliances extends Products{
 	
 	public HomeAppliances()
 	{
-		
+		 
 	}
 
 	public HomeAppliances(String name, double price, int stock) {
