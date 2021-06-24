@@ -123,7 +123,7 @@ public class Order implements Serializable {
      */
     public boolean removeProduct(String namProduct) {
         boolean check = false;
-        String name = "", className = "";
+        String name = "";
         Iterator<Entry<Integer, Products>> it = order.entrySet().iterator();
         Products obj;
 

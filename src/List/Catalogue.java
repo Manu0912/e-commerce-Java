@@ -30,7 +30,7 @@ public class Catalogue {
 
 	/**
 	 * @apiNote add the product to the catalogue
-	 * @param product
+	 * @param product of type Products
 	 */
 	public void add(Products product) {
 		int pos = existProduct(product);
@@ -44,7 +44,7 @@ public class Catalogue {
 
 	/**
 	 * @apiNote remove the product from the catalogue
-	 * @param product
+	 * @param product of type Products
 	 */
 	public void remove(Products product) {
 		int pos = existProduct(product);
@@ -85,7 +85,7 @@ public class Catalogue {
 
 	/**
 	 * 
-	 * @param name of the product
+	 * @param name of type String
 	 * @return the product found
 	 */
 	public Products getElementByName(String name) {

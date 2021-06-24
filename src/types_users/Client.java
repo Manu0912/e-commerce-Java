@@ -1,6 +1,5 @@
 package types_users;
 
-import java.util.ArrayList;
 import java.util.Date;
 
 import Instruments.Cart;
@@ -87,7 +86,7 @@ public class Client extends Users {
 		StringBuilder builder = new StringBuilder();
 		float total = cart.calculateSubTotal();
 		Order order;
- 
+
 		if (card.getBalance() == -1) {
 			builder.append("Debe agregar una tarjeta de credito");
 			cart.setTotal(0);

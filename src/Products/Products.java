@@ -94,35 +94,29 @@ public abstract class Products implements Serializable, IDiscount {
 	 * @apiNote subtract 1 from the stock
 	 */
 	public void substractStock() {
-		if (stock > 0)
-		{
+		if (stock > 0) {
 			this.stock--;
-		}
-		else if(stock == 1)
-		{
+		} else if (stock == 1) {
 			this.stock--;
 		}
 	}
 
 	/**
+	 * @param quantity of type int
 	 * @apiNote subtract quantity from the stock
 	 */
 	public void substractStock(int quantity) {
-		if (stock >= quantity)
-		{
+		if (stock >= quantity) {
 			this.stock -= quantity;
-		}
-		else if(stock == 1)
-		{
+		} else if (stock == 1) {
 			this.stock--;
 		}
 	}
-	
-	public int generateRandomId()
-	{
+
+	public int generateRandomId() {
 		float idf = (float) (Math.random() * 10000);
 		int id = (int) idf;
-		
+
 		return id;
 	}
 
